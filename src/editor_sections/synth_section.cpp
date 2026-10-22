@@ -62,7 +62,7 @@ void SynthSection::paintBackground(Graphics& g) {
 }
 
 void SynthSection::paintContainer(Graphics& g) {
-  g.setColour(Colour(0xff303030));
+  g.setColour(Colour(0xff111318));
   g.fillRoundedRectangle(0, 0, getWidth(), getHeight(), size_ratio_ * 3.0f);
 }
 

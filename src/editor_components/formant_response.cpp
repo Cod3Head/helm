@@ -42,9 +42,9 @@ FormantResponse::FormantResponse(int resolution) : midi_(0.0f), frequency_(0.0f)
 FormantResponse::~FormantResponse() { }
 
 void FormantResponse::paintBackground(Graphics& g) {
-  g.fillAll(Colour(0xff424242));
+  g.fillAll(Colour(0xff1c1f27));
 
-  g.setColour(Colour(0xff4a4a4a));
+  g.setColour(Colour(0xff242832));
   for (int x = 0; x < getWidth(); x += GRID_CELL_WIDTH)
     g.drawLine(x, 0, x, getHeight());
   for (int y = 0; y < getHeight(); y += GRID_CELL_WIDTH)
@@ -58,7 +58,7 @@ void FormantResponse::paint(Graphics& g) {
               0, 0, getWidth(), getHeight(),
               0, 0, background_.getWidth(), background_.getHeight());
 
-  g.setColour(Colour(0xff03a9f4));
+  g.setColour(Colour(0xff54f2c6));
   g.strokePath(filter_response_path_, stroke);
 
   g.setFont(Fonts::getInstance()->proportional_regular().withPointHeight(16.0f));

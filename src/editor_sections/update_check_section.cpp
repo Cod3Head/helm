@@ -61,14 +61,14 @@ void UpdateCheckSection::paint(Graphics& g) {
 
   Rectangle<int> delete_rect = getUpdateCheckRect();
   shadow.drawForRectangle(g, delete_rect);
-  g.setColour(Colour(0xff303030));
+  g.setColour(Colour(0xff111318));
   g.fillRect(delete_rect);
 
   g.saveState();
   g.setOrigin(delete_rect.getX() + PADDING_X, delete_rect.getY() + PADDING_Y);
 
   g.setFont(Fonts::instance()->proportional_light().withPointHeight(14.0f));
-  g.setColour(Colour(0xffaaaaaa));
+  g.setColour(Colour(0xffb3bcc7));
 
   g.drawText(TRANS("There is a new version of Helm!"),
              0, 0.0f, delete_rect.getWidth() - 2 * PADDING_X, 22.0f,
@@ -97,7 +97,7 @@ void UpdateCheckSection::resized() {
 
 void UpdateCheckSection::buttonClicked(Button *clicked_button) {
   if (clicked_button == download_button_)
-    URL("http://tytel.org/helm").launchInDefaultBrowser();
+    URL("https://github.com/Cod3Head/helm/releases").launchInDefaultBrowser();
   setVisible(false);
 }
 
@@ -107,8 +107,15 @@ void UpdateCheckSection::mouseUp(const MouseEvent &e) {
 }
 
 void UpdateCheckSection::checkUpdate() {
+  // CBC: the original check compared against Helm's latest release and sent people to
+  // Helm's download page. Disabled until this fork publishes its own version file;
+  // set CBC_VERSION_URL (e.g. a raw GitHub file) to turn it back on.
+  static const char* const CBC_VERSION_URL = "";
+  if (String(CBC_VERSION_URL).isEmpty())
+    return;
+
   static const int TIMEOUT = 200;
-  URL version_url("http://tytel.org/static/dist/helm_version.txt");
+  URL version_url(CBC_VERSION_URL);
   const ScopedPointer<InputStream> in(version_url.createInputStream(false, nullptr, nullptr,
                                                                     "", TIMEOUT));
 

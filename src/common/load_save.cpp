@@ -353,12 +353,12 @@ String LoadSave::getLicense(var state) {
 
 File LoadSave::getConfigFile() {
   PropertiesFile::Options config_options;
-  config_options.applicationName = "Helm";
+  config_options.applicationName = "SignalForge Synth";
   config_options.osxLibrarySubFolder = "Application Support";
   config_options.filenameSuffix = "config";
 
 #ifdef LINUX
-  config_options.folderName = "." + String(ProjectInfo::projectName).toLowerCase();
+  config_options.folderName = ".signalforge-synth";
 #else
   config_options.folderName = String(ProjectInfo::projectName).toLowerCase();
 #endif

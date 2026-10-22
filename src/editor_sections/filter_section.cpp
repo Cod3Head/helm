@@ -111,7 +111,7 @@ void FilterSection::paintBackground(Graphics& g) {
   drawTextForComponent(g, TRANS("KEY TRACK"), keytrack_);
   drawTextForComponent(g, TRANS("DRIVE"), drive_);
 
-  g.setColour(Colour(0xffaaaaaa));
+  g.setColour(Colour(0xffb3bcc7));
   g.strokePath(low_pass_, stroke);
   g.strokePath(high_pass_, stroke);
 

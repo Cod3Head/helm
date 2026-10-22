@@ -54,13 +54,13 @@ SynthesisInterface::SynthesisInterface(
   addSubSection(sub_section_ = new SubSection("SUB"));
   addSubSection(voice_section_ = new VoiceSection("VOICE"));
 
-  keyboard_->setColour(MidiKeyboardComponent::whiteNoteColourId, Colour(0xff444444));
-  keyboard_->setColour(MidiKeyboardComponent::blackNoteColourId, Colour(0xff222222));
+  keyboard_->setColour(MidiKeyboardComponent::whiteNoteColourId, Colour(0xff1e222a));
+  keyboard_->setColour(MidiKeyboardComponent::blackNoteColourId, Colour(0xff0f1115));
   keyboard_->setColour(MidiKeyboardComponent::keySeparatorLineColourId, Colour(0x00000000));
   keyboard_->setColour(MidiKeyboardComponent::shadowColourId, Colour(0x00000000));
-  keyboard_->setColour(MidiKeyboardComponent::upDownButtonBackgroundColourId, Colour(0xff222222));
+  keyboard_->setColour(MidiKeyboardComponent::upDownButtonBackgroundColourId, Colour(0xff0f1115));
   keyboard_->setColour(MidiKeyboardComponent::keyDownOverlayColourId, Colors::audio);
-  keyboard_->setColour(MidiKeyboardComponent::mouseOverKeyOverlayColourId, Colour(0x4403a9f4));
+  keyboard_->setColour(MidiKeyboardComponent::mouseOverKeyOverlayColourId, Colour(0x4454f2c6));
   keyboard_->setLowestVisibleKey(36);
 
   setAllValues(controls);

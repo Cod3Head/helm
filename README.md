@@ -1,53 +1,31 @@
-## Helm
-Helm is a free, cross-platform, polyphonic synthesizer that runs on GNU/Linux, Mac, and Windows as a standalone program and as a LV2/VST/AU/AAX plugin. Release is in beta so there are outstanding bugs. Please send any bugs found to matthewtytel@gmail.com
+## Clear But Complex // SignalForge Synth
+A free, open-source, cross-platform polyphonic synthesizer from Clear But Complex, styled after SignalForge. It runs on GNU/Linux, Mac and Windows as a standalone program and as an LV2/VST/AU/AAX plugin.
 
-### Installing:
-Go to [tytel.org/helm](http://tytel.org/helm) for builds.
+**Based on [Helm](https://github.com/mtytel/helm) by Matt Tytel.** This project is a fork of Helm and, like Helm, is free software under the GNU General Public License v3 (see `COPYING`). All original copyright notices are kept. Bug reports for this fork go to this repository's Issues, not to the original author.
 
-### Building:
-If you want to build AAX plugins You'll need its SDK located in ~/srcs  
-For AU on the Mac you'll want to put the CoreAudio SDK in /Applications/Xcode.app/Contents/Developer/Extras/CoreAudio  
-Nothing extra is needed for building VST/LV2 plugins
+### What is different from Helm
+- Clear But Complex / SignalForge visual design: near-black base (`#08090b`), slate panels (`#111318`, `#14161c`), mint primary accent (`#54f2c6`) and hot pink (`#ff2d55`) for modulation and the main action.
+- New name, icon, window title and plugin identity (manufacturer code `CbCx`, plugin code `SFSy`), so it installs side by side with Helm. Settings are stored separately from Helm's.
+- Build fixes for current compilers (modern GCC, Visual Studio 2022) and automated Linux/Windows builds in GitHub Actions.
+- Patch files still use the `.helm` format, so all Helm patches load unchanged.
+
+Asset tools: `tools/cbc_brand_assets.py` (icon) and `tools/cbc_apply_palette.py` (colour mapping) document and reproduce the design changes.
+
+### Building
+Every push is built automatically by GitHub Actions (`.github/workflows/build.yml`); download the result from the Actions tab.
 
 #### Linux
-To build and install the standalone, lv2 and vst plugin:
 ```bash
-make
-sudo make install
+make standalone      # standalone app, built to standalone/builds/linux/build
+make lv2             # LV2 plugin
+make vst             # VST plugin
 ```
-
-Other make commands:
-```bash
-# Build just the Linux standalone executable:
-make standalone
-
-# Build just the Linux LV2 plugin:
-make lv2
-
-# Build just the Linux VST plugin
-make vst
-
-# Install just the Linux standalone executable:
-sudo make install_standalone
-
-# Install just the Linux LV2 plugin:
-sudo make install_lv2
-
-# Install just the Linux VST plugin
-sudo make install_vst
-```
-
-The standalone executable is built to standalone/builds/linux/build and installed to /usr/bin
-The LV2 plugin is built to builds/linux/LV2 and installed to /usr/lib/lv2
-The VST plugin is built to builds/linux/VST and installed to /usr/lib/lxvst
-
-#### OSX
-Open /standalone/builds/osx/Helm.xcodeproj for standalone version  
-Open /builds/osx/Helm.xcodeproj for plugin versions
 
 #### Windows
-Open /standalone/builds/vs15/Helm.sln for standalone version  
-Open /builds/vs15/Helm.sln for plugin versions
+Open `standalone/builds/vs17/Helm.sln` (standalone) or `builds/vs17/Helm.sln` (plugins) in Visual Studio 2022.
+
+#### Mac
+Open `/standalone/builds/osx/Helm.xcodeproj` (standalone) or `/builds/osx/Helm.xcodeproj` (plugins).
 
 ### Features:
  - 32 voice polyphony
@@ -65,4 +43,4 @@ Open /builds/vs15/Helm.sln for plugin versions
  - Simple arpeggiator
  - Effects: Formant filter, stutter, delay, distortion, reverb
 
-![alt tag](http://tytel.org/static/images/helm_screenshot.png)
+Original Helm screenshot (pre-restyle): http://tytel.org/static/images/helm_screenshot.png

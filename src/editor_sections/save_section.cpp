@@ -40,61 +40,61 @@ SaveSection::SaveSection(String name) : Overlay(name) {
   banks_view_ = new ListBox("banks", banks_model_);
   folders_view_ = new ListBox("folders", folders_model_);
   rescanFolders();
-  banks_view_->setColour(ListBox::backgroundColourId, Colour(0xff323232));
-  folders_view_->setColour(ListBox::backgroundColourId, Colour(0xff323232));
+  banks_view_->setColour(ListBox::backgroundColourId, Colour(0xff14161c));
+  folders_view_->setColour(ListBox::backgroundColourId, Colour(0xff14161c));
   addAndMakeVisible(banks_view_);
   addAndMakeVisible(folders_view_);
 
   patch_name_ = new TextEditor("Patch Name");
   patch_name_->addListener(this);
-  patch_name_->setTextToShowWhenEmpty(TRANS("Patch Name"), Colour(0xff777777));
+  patch_name_->setTextToShowWhenEmpty(TRANS("Patch Name"), Colour(0xff6f7885));
   patch_name_->setFont(Fonts::instance()->monospace().withPointHeight(16.0f));
-  patch_name_->setColour(CaretComponent::caretColourId, Colour(0xff888888));
+  patch_name_->setColour(CaretComponent::caretColourId, Colour(0xff8a94a1));
   patch_name_->setColour(TextEditor::textColourId, Colors::audio);
-  patch_name_->setColour(TextEditor::highlightedTextColourId, Colour(0xff03a9f4));
-  patch_name_->setColour(TextEditor::highlightColourId, Colour(0xff888888));
-  patch_name_->setColour(TextEditor::backgroundColourId, Colour(0xff323232));
-  patch_name_->setColour(TextEditor::outlineColourId, Colour(0xff888888));
-  patch_name_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff888888));
+  patch_name_->setColour(TextEditor::highlightedTextColourId, Colour(0xff54f2c6));
+  patch_name_->setColour(TextEditor::highlightColourId, Colour(0xff8a94a1));
+  patch_name_->setColour(TextEditor::backgroundColourId, Colour(0xff14161c));
+  patch_name_->setColour(TextEditor::outlineColourId, Colour(0xff8a94a1));
+  patch_name_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff8a94a1));
   addAndMakeVisible(patch_name_);
 
   author_ = new TextEditor("Author");
   author_->addListener(this);
-  author_->setTextToShowWhenEmpty(TRANS("Author"), Colour(0xff777777));
+  author_->setTextToShowWhenEmpty(TRANS("Author"), Colour(0xff6f7885));
   author_->setFont(Fonts::instance()->monospace().withPointHeight(16.0f));
-  author_->setColour(CaretComponent::caretColourId, Colour(0xff888888));
-  author_->setColour(TextEditor::textColourId, Colour(0xffcccccc));
-  author_->setColour(TextEditor::highlightedTextColourId, Colour(0xffcccccc));
-  author_->setColour(TextEditor::highlightColourId, Colour(0xff888888));
-  author_->setColour(TextEditor::backgroundColourId, Colour(0xff323232));
-  author_->setColour(TextEditor::outlineColourId, Colour(0xff888888));
-  author_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff888888));
+  author_->setColour(CaretComponent::caretColourId, Colour(0xff8a94a1));
+  author_->setColour(TextEditor::textColourId, Colour(0xffd5dce3));
+  author_->setColour(TextEditor::highlightedTextColourId, Colour(0xffd5dce3));
+  author_->setColour(TextEditor::highlightColourId, Colour(0xff8a94a1));
+  author_->setColour(TextEditor::backgroundColourId, Colour(0xff14161c));
+  author_->setColour(TextEditor::outlineColourId, Colour(0xff8a94a1));
+  author_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff8a94a1));
   addAndMakeVisible(author_);
 
   add_bank_name_ = new TextEditor("Add Bank");
   add_bank_name_->addListener(this);
-  add_bank_name_->setTextToShowWhenEmpty(TRANS("New Bank"), Colour(0xff777777));
+  add_bank_name_->setTextToShowWhenEmpty(TRANS("New Bank"), Colour(0xff6f7885));
   add_bank_name_->setFont(Fonts::instance()->monospace().withPointHeight(12.0f));
-  add_bank_name_->setColour(CaretComponent::caretColourId, Colour(0xff888888));
-  add_bank_name_->setColour(TextEditor::textColourId, Colour(0xffcccccc));
-  add_bank_name_->setColour(TextEditor::highlightedTextColourId, Colour(0xffcccccc));
-  add_bank_name_->setColour(TextEditor::highlightColourId, Colour(0xff888888));
-  add_bank_name_->setColour(TextEditor::backgroundColourId, Colour(0xff323232));
-  add_bank_name_->setColour(TextEditor::outlineColourId, Colour(0xff888888));
-  add_bank_name_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff888888));
+  add_bank_name_->setColour(CaretComponent::caretColourId, Colour(0xff8a94a1));
+  add_bank_name_->setColour(TextEditor::textColourId, Colour(0xffd5dce3));
+  add_bank_name_->setColour(TextEditor::highlightedTextColourId, Colour(0xffd5dce3));
+  add_bank_name_->setColour(TextEditor::highlightColourId, Colour(0xff8a94a1));
+  add_bank_name_->setColour(TextEditor::backgroundColourId, Colour(0xff14161c));
+  add_bank_name_->setColour(TextEditor::outlineColourId, Colour(0xff8a94a1));
+  add_bank_name_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff8a94a1));
   addAndMakeVisible(add_bank_name_);
 
   add_folder_name_ = new TextEditor("Add Folder");
   add_folder_name_->addListener(this);
-  add_folder_name_->setTextToShowWhenEmpty(TRANS("New Folder"), Colour(0xff777777));
+  add_folder_name_->setTextToShowWhenEmpty(TRANS("New Folder"), Colour(0xff6f7885));
   add_folder_name_->setFont(Fonts::instance()->monospace().withPointHeight(12.0f));
-  add_folder_name_->setColour(CaretComponent::caretColourId, Colour(0xff888888));
-  add_folder_name_->setColour(TextEditor::textColourId, Colour(0xffcccccc));
-  add_folder_name_->setColour(TextEditor::highlightedTextColourId, Colour(0xffcccccc));
-  add_folder_name_->setColour(TextEditor::highlightColourId, Colour(0xff888888));
-  add_folder_name_->setColour(TextEditor::backgroundColourId, Colour(0xff323232));
-  add_folder_name_->setColour(TextEditor::outlineColourId, Colour(0xff888888));
-  add_folder_name_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff888888));
+  add_folder_name_->setColour(CaretComponent::caretColourId, Colour(0xff8a94a1));
+  add_folder_name_->setColour(TextEditor::textColourId, Colour(0xffd5dce3));
+  add_folder_name_->setColour(TextEditor::highlightedTextColourId, Colour(0xffd5dce3));
+  add_folder_name_->setColour(TextEditor::highlightColourId, Colour(0xff8a94a1));
+  add_folder_name_->setColour(TextEditor::backgroundColourId, Colour(0xff14161c));
+  add_folder_name_->setColour(TextEditor::outlineColourId, Colour(0xff8a94a1));
+  add_folder_name_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff8a94a1));
   addAndMakeVisible(add_folder_name_);
 
   save_button_ = new TextButton(TRANS("Save"));
@@ -122,14 +122,14 @@ void SaveSection::paint(Graphics& g) {
 
   Rectangle<int> save_rect = getSaveRect();
   shadow.drawForRectangle(g, save_rect);
-  g.setColour(Colour(0xff303030));
+  g.setColour(Colour(0xff111318));
   g.fillRect(save_rect);
 
   g.saveState();
   g.setOrigin(save_rect.getX() + PADDING_X, save_rect.getY() + PADDING_Y);
 
   g.setFont(Fonts::instance()->proportional_regular().withPointHeight(14.0f));
-  g.setColour(Colour(0xff888888));
+  g.setColour(Colour(0xff8a94a1));
 
   g.drawText(TRANS("PATCH NAME"),
              0, PADDING_Y, DIVISION - 10, TEXT_EDITOR_HEIGHT,

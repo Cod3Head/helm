@@ -174,7 +174,7 @@ class HelmApplication : public JUCEApplication {
       }
       else {
         bool visible = !command.contains(" --headless ");
-        main_window_ = new MainWindow(getApplicationName(), visible);
+        main_window_ = new MainWindow("Clear But Complex // " + getApplicationName(), visible);
 
         StringArray args = getCommandLineParameterArray();
         File file;

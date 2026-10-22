@@ -26,10 +26,10 @@ int FileListBoxModel::getNumRows() {
 
 void FileListBoxModel::paintListBoxItem(int row_number, Graphics& g,
                                         int width, int height, bool selected) {
-  g.fillAll(Colour(0xff323232));
-  g.setColour(Colour(0xffdddddd));
+  g.fillAll(Colour(0xff14161c));
+  g.setColour(Colour(0xffe3e8ed));
   if (selected) {
-    g.fillAll(Colour(0xff444444));
+    g.fillAll(Colour(0xff1e222a));
     g.setColour(Colors::audio);
   }
 

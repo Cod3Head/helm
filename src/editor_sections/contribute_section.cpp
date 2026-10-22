@@ -67,9 +67,9 @@ class NeverAgainLookAndFeel : public DefaultLookAndFeel {
       Font font = Fonts::instance()->proportional_regular().withPointHeight(11.0f);
       g.setFont(font);
 
-      g.setColour(Colour(0xff666666));
+      g.setColour(Colour(0xff5f6875));
       if (hover)
-        g.setColour(Colour(0xff777777));
+        g.setColour(Colour(0xff6f7885));
       g.drawFittedText(button.getName(), button.getLocalBounds(), Justification::centredRight, 1);
     }
 
@@ -103,17 +103,17 @@ ContributeSection::ContributeSection(String name) : Overlay(name) {
   addAndMakeVisible(custom_amount_);
   custom_amount_->addFocusListener(this);
 
-  custom_amount_->setTextToShowWhenEmpty(TRANS("$5"), Colour(0xff777777));
+  custom_amount_->setTextToShowWhenEmpty(TRANS("$5"), Colour(0xff6f7885));
   custom_amount_->setInputRestrictions(6, "$0123456789.");
   custom_amount_->setFont(Fonts::instance()->proportional_light().withPointHeight(16.0f));
   custom_amount_->setIndents(4, 12);
-  custom_amount_->setColour(CaretComponent::caretColourId, Colour(0xff888888));
-  custom_amount_->setColour(TextEditor::textColourId, Colour(0xffcccccc));
-  custom_amount_->setColour(TextEditor::highlightedTextColourId, Colour(0xffcccccc));
-  custom_amount_->setColour(TextEditor::highlightColourId, Colour(0xff888888));
-  custom_amount_->setColour(TextEditor::backgroundColourId, Colour(0xff323232));
-  custom_amount_->setColour(TextEditor::outlineColourId, Colour(0xff888888));
-  custom_amount_->setColour(TextEditor::focusedOutlineColourId, Colour(0xffffab00));
+  custom_amount_->setColour(CaretComponent::caretColourId, Colour(0xff8a94a1));
+  custom_amount_->setColour(TextEditor::textColourId, Colour(0xffd5dce3));
+  custom_amount_->setColour(TextEditor::highlightedTextColourId, Colour(0xffd5dce3));
+  custom_amount_->setColour(TextEditor::highlightColourId, Colour(0xff8a94a1));
+  custom_amount_->setColour(TextEditor::backgroundColourId, Colour(0xff14161c));
+  custom_amount_->setColour(TextEditor::outlineColourId, Colour(0xff8a94a1));
+  custom_amount_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff54f2c6));
 
   pay_button_ = new TextButton(TRANS("Pay"));
   addAndMakeVisible(pay_button_);
@@ -121,7 +121,7 @@ ContributeSection::ContributeSection(String name) : Overlay(name) {
   pay_button_->setMouseCursor(MouseCursor::PointingHandCursor);
   pay_button_->setLookAndFeel(PayLookAndFeel::instance());
   pay_button_->setColour(TextButton::buttonColourId, Colors::audio);
-  pay_button_->setColour(TextButton::buttonOnColourId, Colour(0xff55bbff));
+  pay_button_->setColour(TextButton::buttonOnColourId, Colour(0xffff2d55));
   pay_button_->setColour(TextButton::textColourOffId, Colours::white);
 
   remind_button_ = new TextButton(TRANS("Remind Me Later"));
@@ -129,9 +129,9 @@ ContributeSection::ContributeSection(String name) : Overlay(name) {
   remind_button_->addListener(this);
   remind_button_->setMouseCursor(MouseCursor::PointingHandCursor);
   remind_button_->setLookAndFeel(PayLookAndFeel::instance());
-  remind_button_->setColour(TextButton::buttonColourId, Colour(0xff484848));
-  remind_button_->setColour(TextButton::buttonOnColourId, Colour(0xff555555));
-  remind_button_->setColour(TextButton::textColourOffId, Colour(0xff999999));
+  remind_button_->setColour(TextButton::buttonColourId, Colour(0xff22262f));
+  remind_button_->setColour(TextButton::buttonOnColourId, Colour(0xff2e3440));
+  remind_button_->setColour(TextButton::textColourOffId, Colour(0xff9ca6b3));
 
   never_again_button_ = new TextButton(TRANS("Don't Ask Again"));
   never_again_button_->setLookAndFeel(NeverAgainLookAndFeel::instance());
@@ -163,7 +163,7 @@ void ContributeSection::paint(Graphics& g) {
   shadow_path.addEllipse(icon_border_rect);
   shadow.drawForPath(g, shadow_path);
 
-  g.setColour(Colour(0xff303030));
+  g.setColour(Colour(0xff111318));
   g.fillRect(info_rect);
   g.fillEllipse(icon_border_rect);
 
@@ -186,13 +186,13 @@ void ContributeSection::paint(Graphics& g) {
   g.restoreState();
 
   g.setFont(Fonts::instance()->proportional_regular().withPointHeight(24.0));
-  g.setColour(Colour(0xff2196f3));
+  g.setColour(Colour(0xff54f2c6));
   g.drawText(TRANS("Hope you're enjoying Helm!"),
              info_rect.getX(), info_rect.getY() + 40,
              info_rect.getWidth(), 32.0f, Justification::centred);
 
   g.setFont(Fonts::instance()->proportional_regular().withPointHeight(16.0));
-  g.setColour(Colour(0xff888888));
+  g.setColour(Colour(0xff8a94a1));
   g.drawText(TRANS("Pay what you can to keep the project going"),
              info_rect.getX(), info_rect.getY() + 80,
              info_rect.getWidth(), 16.0f, Justification::centred);

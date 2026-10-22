@@ -24,34 +24,34 @@ namespace BinaryData
     const int            helm_debian_icon_xpmSize = 7204;
 
     extern const char*   helm_icon_16_1x_png;
-    const int            helm_icon_16_1x_pngSize = 1230;
+    const int            helm_icon_16_1x_pngSize = 812;
 
     extern const char*   helm_icon_16_2x_png;
-    const int            helm_icon_16_2x_pngSize = 2718;
+    const int            helm_icon_16_2x_pngSize = 1920;
 
     extern const char*   helm_icon_32_1x_png;
-    const int            helm_icon_32_1x_pngSize = 2718;
+    const int            helm_icon_32_1x_pngSize = 1920;
 
     extern const char*   helm_icon_32_2x_png;
-    const int            helm_icon_32_2x_pngSize = 6352;
+    const int            helm_icon_32_2x_pngSize = 4556;
 
     extern const char*   helm_icon_128_1x_png;
-    const int            helm_icon_128_1x_pngSize = 15174;
+    const int            helm_icon_128_1x_pngSize = 10438;
 
     extern const char*   helm_icon_128_2x_png;
-    const int            helm_icon_128_2x_pngSize = 39046;
+    const int            helm_icon_128_2x_pngSize = 21202;
 
     extern const char*   helm_icon_256_1x_png;
-    const int            helm_icon_256_1x_pngSize = 39046;
+    const int            helm_icon_256_1x_pngSize = 21202;
 
     extern const char*   helm_icon_256_2x_png;
-    const int            helm_icon_256_2x_pngSize = 70722;
+    const int            helm_icon_256_2x_pngSize = 41164;
 
     extern const char*   helm_icon_512_1x_png;
-    const int            helm_icon_512_1x_pngSize = 70722;
+    const int            helm_icon_512_1x_pngSize = 41164;
 
     extern const char*   helm_icon_512_2x_png;
-    const int            helm_icon_512_2x_pngSize = 137623;
+    const int            helm_icon_512_2x_pngSize = 13234;
 
     extern const char*   modulation_selected_active_1x_png;
     const int            modulation_selected_active_1x_pngSize = 2739;

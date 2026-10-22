@@ -77,9 +77,9 @@ void OpenGLEnvelope::paintBackground() {
   Graphics g(background_image_);
   g.addTransform(AffineTransform::scale(scale, scale));
 
-  g.fillAll(Colour(0xff424242));
+  g.fillAll(Colour(0xff1c1f27));
 
-  g.setColour(Colour(0xff4a4a4a));
+  g.setColour(Colour(0xff242832));
   for (int x = 0; x < getWidth(); x += GRID_CELL_WIDTH)
     g.drawLine(x, 0, x, getHeight());
   for (int y = 0; y < getHeight(); y += GRID_CELL_WIDTH)
@@ -89,7 +89,7 @@ void OpenGLEnvelope::paintBackground() {
   g.setColour(Colors::graph_fill);
   g.fillPath(envelope_line_);
 
-  g.setColour(Colour(0xff505050));
+  g.setColour(Colour(0xff2a2f3a));
   g.drawLine(getAttackX(), 0.0f, getAttackX(), getHeight());
   g.drawLine(getDecayX(), getSustainY(), getDecayX(), getHeight());
 

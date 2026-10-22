@@ -24,8 +24,8 @@
 #include "text_look_and_feel.h"
 
 ModulationLookAndFeel::ModulationLookAndFeel() {
-  setColour(BubbleComponent::backgroundColourId, Colour(0xff222222));
-  setColour(TooltipWindow::textColourId, Colour(0xffdddddd));
+  setColour(BubbleComponent::backgroundColourId, Colour(0xff0f1115));
+  setColour(TooltipWindow::textColourId, Colour(0xffe3e8ed));
 }
 
 void ModulationLookAndFeel::drawLinearSlider(Graphics& g, int x, int y, int width, int height,
@@ -40,19 +40,19 @@ void ModulationLookAndFeel::drawLinearSlider(Graphics& g, int x, int y, int widt
   float mod_percentage = slider.getValue() / destination_range;
 
   if (mod_percentage == 0.0) {
-    g.setColour(Colour(0x11b9f6ca));
+    g.setColour(Colour(0x11ff8fa6));
     g.fillRect(0, 0, slider.getWidth(), slider.getHeight());
-    g.setColour(Colour(0xffb9f6ca));
+    g.setColour(Colour(0xffff8fa6));
     g.drawRect(0, 0, slider.getWidth(), slider.getHeight(), 1);
   }
   else {
-    g.setColour(Colour(0x1100e676));
+    g.setColour(Colour(0x11ff2d55));
     g.fillRect(0, 0, slider.getWidth(), slider.getHeight());
     g.setColour(Colors::modulation);
     g.drawRect(0.0f, 0.0f, float(slider.getWidth()), float(slider.getHeight()), 2.5f);
   }
 
-  g.setColour(Colour(0x5500e676));
+  g.setColour(Colour(0x55ff2d55));
 
   if (style == Slider::SliderStyle::LinearBar) {
     float destination_position = width * destination_percentage;
@@ -61,7 +61,7 @@ void ModulationLookAndFeel::drawLinearSlider(Graphics& g, int x, int y, int widt
     float to = std::max<float>(destination_position + mod_diff, destination_position);
 
     g.fillRect(x + from, float(y), to - from, float(height));
-    g.setColour(Colour(0xffffffff));
+    g.setColour(Colour(0xfff1f4f7));
     g.fillRect(x + destination_position + mod_diff, 1.0f * y, 2.0f, 1.0f * height);
   }
   else if (style == Slider::SliderStyle::LinearBarVertical) {
@@ -71,7 +71,7 @@ void ModulationLookAndFeel::drawLinearSlider(Graphics& g, int x, int y, int widt
     float to = std::max<float>(destination_position - mod_diff, destination_position);
 
     g.fillRect(float(x), y + from, float(width), to - from);
-    g.setColour(Colour(0xffffffff));
+    g.setColour(Colour(0xfff1f4f7));
     g.fillRect(float(x), y + destination_position - mod_diff, 1.0f * width, 2.0f);
   }
 }
@@ -83,19 +83,19 @@ void ModulationLookAndFeel::drawLinearSliderThumb(Graphics& g, int x, int y, int
 
 void ModulationLookAndFeel::drawTextModulation(Graphics& g, Slider& slider, float percent) {
   if (percent == 0.0f) {
-    g.setColour(Colour(0x11b9f6ca));
+    g.setColour(Colour(0x11ff8fa6));
     g.fillRect(0, 0, slider.getWidth(), slider.getHeight());
-    g.setColour(Colour(0xffb9f6ca));
+    g.setColour(Colour(0xffff8fa6));
     g.drawRect(0, 0, slider.getWidth(), slider.getHeight(), 1);
   }
   else {
-    g.setColour(Colour(0x1100e676));
+    g.setColour(Colour(0x11ff2d55));
     g.fillRect(0, 0, slider.getWidth(), slider.getHeight());
     g.setColour(Colors::modulation);
     g.drawRect(0.0f, 0.0f, float(slider.getWidth()), float(slider.getHeight()), 2.5f);
   }
 
-  g.setColour(Colour(0x5500e676));
+  g.setColour(Colour(0x55ff2d55));
 
   if (percent < 0.0f) {
     g.fillRect(2.5f, 2.5f, slider.getWidth() - 5.0f, -percent * (slider.getHeight() - 5.0f));
@@ -132,7 +132,7 @@ void ModulationLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int widt
       PathStrokeType(knob_radius, PathStrokeType::beveled, PathStrokeType::butt);
 
   if (mod_diff == 0.0) {
-    g.setColour(Colour(0x33b9f6ca));
+    g.setColour(Colour(0x33ff8fa6));
     g.fillEllipse(width / 2.0f - knob_radius, height / 2.0f - knob_radius,
                   2.0 * knob_radius, 2.0 * knob_radius);
     g.setColour(Colors::modulation);
@@ -140,7 +140,7 @@ void ModulationLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int widt
                   2.0f * knob_radius - 1.0f, 2.0f * knob_radius - 1.0f, 1.0f);
   }
   else {
-    g.setColour(Colour(0xaa00e676));
+    g.setColour(Colour(0xaaff2d55));
     g.fillEllipse(width / 2.0f - knob_radius, height / 2.0f - knob_radius,
                   2.0 * knob_radius, 2.0 * knob_radius);
     g.setColour(Colors::modulation);
@@ -157,12 +157,12 @@ void ModulationLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int widt
   active_section.addCentredArc(center_x, center_y, knob_radius / 2.0, knob_radius / 2.0,
                                destination_angle, mod_diff, 0, true);
 
-  g.setColour(Colour(0xff69f0ae));
+  g.setColour(Colour(0xffff6b87));
   g.strokePath(active_section, stroke_type);
 
   float end_x = draw_radius + 0.9f * knob_radius * sin(destination_angle + mod_diff);
   float end_y = draw_radius - 0.9f * knob_radius * cos(destination_angle + mod_diff);
-  g.setColour(Colour(0xffffffff));
+  g.setColour(Colour(0xfff1f4f7));
   g.drawLine(draw_radius, draw_radius, end_x, end_y, 1.0f);
 }
 

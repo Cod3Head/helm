@@ -128,20 +128,20 @@ void OscillatorSection::paintBackground(Graphics& g) {
   g.fillEllipse(transpose_2_->getBounds().toFloat().expanded(extra_knob_padding));
   g.fillEllipse(tune_2_->getBounds().toFloat().expanded(extra_knob_padding));
 
-  g.setColour(Colour(0xff303030));
+  g.setColour(Colour(0xff111318));
   g.fillRect(0.0f, 1.0f * tune_1_->getBottom() + size_ratio_ * 2.0f,
              1.0f * getWidth(), size_ratio_ * 5.0f);
 
-  g.setColour(Colour(0xff4fc3f7));
+  g.setColour(Colour(0xff8ff7da));
   g.strokePath(top_left_cross_path_, PathStrokeType(1.0f));
 
-  g.setColour(Colour(0xff4fc3f7));
+  g.setColour(Colour(0xff8ff7da));
   g.strokePath(top_right_cross_path_, PathStrokeType(1.0f));
 
-  g.setColour(Colour(0xff4fc3f7));
+  g.setColour(Colour(0xff8ff7da));
   g.strokePath(bottom_left_cross_path_, PathStrokeType(1.0f));
 
-  g.setColour(Colour(0xff4fc3f7));
+  g.setColour(Colour(0xff8ff7da));
   g.strokePath(bottom_right_cross_path_, PathStrokeType(1.0f));
 
   g.setColour(Colors::control_label_text);
@@ -158,7 +158,7 @@ void OscillatorSection::paintBackground(Graphics& g) {
   component_shadow.drawForRectangle(g, wave_viewer_1_->getBounds());
   component_shadow.drawForRectangle(g, wave_viewer_2_->getBounds());
 
-  g.setColour(Colour(0xff424242));
+  g.setColour(Colour(0xff1c1f27));
   paintKnobShadows(g);
 }
 

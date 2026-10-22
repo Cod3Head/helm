@@ -76,44 +76,44 @@ void WaveSelector::paint(Graphics& g) {
   int selected = getValue();
   int num_types = getMaximum() - getMinimum() + 1;
   float cell_width = float(getWidth()) / num_types;
-  g.setColour(Colour(0xff424242));
+  g.setColour(Colour(0xff1c1f27));
   g.fillRect(selected * cell_width, 0.0f, cell_width, float(getHeight()));
 
   /*
-   g.setColour(selected == 0 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 0 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(sine_, stroke);
 
-   g.setColour(selected == 1 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 1 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(triangle_, stroke);
 
-   g.setColour(selected == 2 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 2 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(square_, stroke);
 
-   g.setColour(selected == 3 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 3 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(down_saw_, stroke);
 
-   g.setColour(selected == 4 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 4 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(up_saw_, stroke);
 
-   g.setColour(selected == 5 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 5 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(three_step_, stroke);
 
-   g.setColour(selected == 6 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 6 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(four_step_, stroke);
 
-   g.setColour(selected == 7 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 7 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(eight_step_, stroke);
 
-   g.setColour(selected == 8 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 8 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(three_pyramid_, stroke);
 
-   g.setColour(selected == 9 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 9 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(five_pyramid_, stroke);
 
-   g.setColour(selected == 10 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 10 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(nine_pyramid_, stroke);
 
-   g.setColour(selected == 11 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+   g.setColour(selected == 11 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
    g.strokePath(noise_, stroke);
    */
 }

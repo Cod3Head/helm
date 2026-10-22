@@ -312,25 +312,25 @@
  #define JucePlugin_Enable_IAA             0
 #endif
 #ifndef  JucePlugin_Name
- #define JucePlugin_Name                   "Helm"
+ #define JucePlugin_Name                   "SignalForge Synth"
 #endif
 #ifndef  JucePlugin_Desc
- #define JucePlugin_Desc                   ""
+ #define JucePlugin_Desc                   "Clear But Complex // SignalForge Synth"
 #endif
 #ifndef  JucePlugin_Manufacturer
- #define JucePlugin_Manufacturer           "Matt Tytel"
+ #define JucePlugin_Manufacturer           "Clear But Complex"
 #endif
 #ifndef  JucePlugin_ManufacturerWebsite
- #define JucePlugin_ManufacturerWebsite    "tytel.org"
+ #define JucePlugin_ManufacturerWebsite    ""
 #endif
 #ifndef  JucePlugin_ManufacturerEmail
- #define JucePlugin_ManufacturerEmail      "matthewtytel@gmail.com"
+ #define JucePlugin_ManufacturerEmail      ""
 #endif
 #ifndef  JucePlugin_ManufacturerCode
- #define JucePlugin_ManufacturerCode       0x54797465 // 'Tyte'
+ #define JucePlugin_ManufacturerCode       0x43624378 // 'CbCx'
 #endif
 #ifndef  JucePlugin_PluginCode
- #define JucePlugin_PluginCode             0x48656c6d // 'Helm'
+ #define JucePlugin_PluginCode             0x53465379 // 'SFSy'
 #endif
 #ifndef  JucePlugin_IsSynth
  #define JucePlugin_IsSynth                1
@@ -381,7 +381,7 @@
  #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode
 #endif
 #ifndef  JucePlugin_CFBundleIdentifier
- #define JucePlugin_CFBundleIdentifier     org.tytel.helmplugin
+ #define JucePlugin_CFBundleIdentifier     com.clearbutcomplex.signalforgesynth.plugin
 #endif
 #ifndef  JucePlugin_RTASCategory
  #define JucePlugin_RTASCategory           0
@@ -399,7 +399,7 @@
  #define JucePlugin_RTASDisableMultiMono   0
 #endif
 #ifndef  JucePlugin_AAXIdentifier
- #define JucePlugin_AAXIdentifier          org.tytel.helm
+ #define JucePlugin_AAXIdentifier          com.clearbutcomplex.signalforgesynth
 #endif
 #ifndef  JucePlugin_AAXManufacturerCode
  #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode

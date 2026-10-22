@@ -27,7 +27,8 @@
 #define TOP_HEIGHT 64
 
 #ifndef PAY_NAG
-  #define PAY_NAG 1
+  // CBC: off in this fork; the prompt asked users to pay for Helm on the original author's site.
+  #define PAY_NAG 0
 #endif
 
 FullInterface::FullInterface(mopo::control_map controls, mopo::output_map modulation_sources,
@@ -146,7 +147,7 @@ void FullInterface::paintBackground(Graphics& g) {
 
   shadow.drawForRectangle(g, Rectangle<int>(x, logo_button_->getY(),
                                             width, logo_button_->getHeight()));
-  g.setColour(Colour(0xff303030));
+  g.setColour(Colour(0xff111318));
   g.fillRoundedRectangle(x, logo_button_->getY(), width, logo_button_->getHeight(), 3.0f);
 
   g.saveState();

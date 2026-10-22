@@ -63,7 +63,7 @@ SynthSlider::SynthSlider(String name) : Slider(name), bipolar_(false), flip_colo
   setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
 
   setBufferedToImage(true);
-  setColour(Slider::backgroundColourId, Colour(0xff303030));
+  setColour(Slider::backgroundColourId, Colour(0xff111318));
   setColour(Slider::textBoxOutlineColourId, Colour(0x00000000));
 }
 
@@ -209,7 +209,7 @@ void SynthSlider::drawShadow(Graphics &g) {
   else if (isRotary())
     drawRotaryShadow(g);
   else {
-    g.setColour(Colour(0xff222222));
+    g.setColour(Colour(0xff0f1115));
     g.fillRect(getBounds());
   }
 }
@@ -234,7 +234,7 @@ void SynthSlider::drawRotaryShadow(Graphics &g) {
   rail_outer.addCentredArc(full_radius, full_radius, outer_radius, outer_radius,
                            0.0f, -rotary_angle, rotary_angle, true);
 
-  g.setColour(Colour(0xff333333));
+  g.setColour(Colour(0xff14161c));
 
   PathStrokeType outer_stroke =
       PathStrokeType(stroke_width, PathStrokeType::beveled, PathStrokeType::butt);
@@ -249,7 +249,7 @@ void SynthSlider::drawRectangularShadow(Graphics &g) {
   g.saveState();
   g.setOrigin(getX(), getY());
   shadow.drawForRectangle(g, getLocalBounds());
-  g.setColour(Colour(0xff333333));
+  g.setColour(Colour(0xff14161c));
   g.fillRect(getLocalBounds());
 
   g.restoreState();

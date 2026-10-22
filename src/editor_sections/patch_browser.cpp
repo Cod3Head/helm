@@ -107,22 +107,22 @@ PatchBrowser::PatchBrowser() : Overlay("patch_browser") {
   patches_view_->updateContent();
   addAndMakeVisible(patches_view_);
 
-  banks_view_->setColour(ListBox::backgroundColourId, Colour(0xff323232));
-  folders_view_->setColour(ListBox::backgroundColourId, Colour(0xff323232));
-  patches_view_->setColour(ListBox::backgroundColourId, Colour(0xff323232));
+  banks_view_->setColour(ListBox::backgroundColourId, Colour(0xff14161c));
+  folders_view_->setColour(ListBox::backgroundColourId, Colour(0xff14161c));
+  patches_view_->setColour(ListBox::backgroundColourId, Colour(0xff14161c));
 
   search_box_ = new TextEditor("Search");
   search_box_->addListener(this);
   search_box_->setSelectAllWhenFocused(true);
-  search_box_->setTextToShowWhenEmpty(TRANS("Search"), Colour(0xff777777));
+  search_box_->setTextToShowWhenEmpty(TRANS("Search"), Colour(0xff6f7885));
   search_box_->setFont(Fonts::instance()->proportional_light().withPointHeight(16.0f));
-  search_box_->setColour(CaretComponent::caretColourId, Colour(0xff888888));
-  search_box_->setColour(TextEditor::textColourId, Colour(0xffcccccc));
-  search_box_->setColour(TextEditor::highlightedTextColourId, Colour(0xffcccccc));
-  search_box_->setColour(TextEditor::highlightColourId, Colour(0xff888888));
-  search_box_->setColour(TextEditor::backgroundColourId, Colour(0xff323232));
-  search_box_->setColour(TextEditor::outlineColourId, Colour(0xff888888));
-  search_box_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff888888));
+  search_box_->setColour(CaretComponent::caretColourId, Colour(0xff8a94a1));
+  search_box_->setColour(TextEditor::textColourId, Colour(0xffd5dce3));
+  search_box_->setColour(TextEditor::highlightedTextColourId, Colour(0xffd5dce3));
+  search_box_->setColour(TextEditor::highlightColourId, Colour(0xff8a94a1));
+  search_box_->setColour(TextEditor::backgroundColourId, Colour(0xff14161c));
+  search_box_->setColour(TextEditor::outlineColourId, Colour(0xff8a94a1));
+  search_box_->setColour(TextEditor::focusedOutlineColourId, Colour(0xff8a94a1));
   addAndMakeVisible(search_box_);
 
   import_bank_button_ = new TextButton(TRANS("Import Bank"));
@@ -141,14 +141,14 @@ PatchBrowser::PatchBrowser() : Overlay("patch_browser") {
                                          URL("https://creativecommons.org/licenses/by/4.0/"));
   cc_license_link_->setFont(Fonts::instance()->monospace().withPointHeight(12.0f),
                             false, Justification::centredLeft);
-  cc_license_link_->setColour(HyperlinkButton::textColourId, Colour(0xffffd740));
+  cc_license_link_->setColour(HyperlinkButton::textColourId, Colour(0xff54f2c6));
   addAndMakeVisible(cc_license_link_);
 
   gpl_license_link_ = new HyperlinkButton("GPL-3",
                                           URL("http://www.gnu.org/licenses/gpl-3.0.en.html"));
   gpl_license_link_->setFont(Fonts::instance()->monospace().withPointHeight(12.0f),
                              false, Justification::centredLeft);
-  gpl_license_link_->setColour(HyperlinkButton::textColourId, Colour(0xffffd740));
+  gpl_license_link_->setColour(HyperlinkButton::textColourId, Colour(0xff54f2c6));
   addAndMakeVisible(gpl_license_link_);
 
   save_as_button_ = new TextButton(TRANS("Save Patch As"));
@@ -175,7 +175,7 @@ PatchBrowser::~PatchBrowser() {
 
 void PatchBrowser::paint(Graphics& g) {
   g.fillAll(Colors::overlay_screen);
-  g.setColour(Colour(0xff111111));
+  g.setColour(Colour(0xff0b0c0f));
   g.fillRect(0.0f, 0.0f, 1.0f * getWidth(), size_ratio_ * BROWSING_HEIGHT);
 
   g.setColour(Colors::background);
@@ -190,7 +190,7 @@ void PatchBrowser::paint(Graphics& g) {
     float buffer = 20.0f;
 
     g.setFont(Fonts::instance()->proportional_light().withPointHeight(14.0f));
-    g.setColour(Colour(0xff888888));
+    g.setColour(Colour(0xff8a94a1));
 
     g.fillRect(data_x + division + buffer / 2.0f, BROWSE_PADDING + 70.0f,
                1.0f, 120.0f);

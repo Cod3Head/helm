@@ -35,15 +35,15 @@ void BrowserLookAndFeel::drawToggleButton(Graphics& g, ToggleButton& button,
   static const float max_text_height = 16.0f;
 
   if (button.getToggleState())
-    g.setColour(Colour(0xffffab00));
+    g.setColour(Colour(0xff54f2c6));
   else
-    g.setColour(Colour(0xff313131));
+    g.setColour(Colour(0xff121419));
   g.fillRect(button.getLocalBounds());
 
   if (button.getToggleState())
     g.setColour(Colours::white);
   else
-    g.setColour(Colour(0xffbbbbbb));
+    g.setColour(Colour(0xffc9d1da));
   
   int height = button.getHeight();
   float text_height = std::min(max_text_height, height * text_percentage);
@@ -51,7 +51,7 @@ void BrowserLookAndFeel::drawToggleButton(Graphics& g, ToggleButton& button,
   g.drawText(button.getButtonText(), 0, 0,
              button.getWidth(), button.getHeight(), Justification::centred);
 
-  g.setColour(Colour(0xff565656));
+  g.setColour(Colour(0xff2a2f3a));
   g.drawRect(button.getLocalBounds());
 
   if (is_down) {

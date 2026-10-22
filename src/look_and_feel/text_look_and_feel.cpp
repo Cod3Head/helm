@@ -22,12 +22,12 @@
 
 TextLookAndFeel::TextLookAndFeel() {
   setColour(ComboBox::backgroundColourId, Colors::background);
-  setColour(ComboBox::arrowColourId, Colour(0xff888888));
-  setColour(ComboBox::outlineColourId, Colour(0xff888888));
+  setColour(ComboBox::arrowColourId, Colour(0xff8a94a1));
+  setColour(ComboBox::outlineColourId, Colour(0xff8a94a1));
   setColour(ComboBox::textColourId, Colors::control_label_text);
-  setColour(Label::textColourId, Colour(0xffaaaaaa));
+  setColour(Label::textColourId, Colour(0xffb3bcc7));
   setColour(ListBox::backgroundColourId, Colors::background);
-  setColour(ListBox::textColourId, Colour(0xffaaaaaa));
+  setColour(ListBox::textColourId, Colour(0xffb3bcc7));
 }
 
 void TextLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, int height,
@@ -41,19 +41,19 @@ void TextLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, int
   if (s_slider)
     active = s_slider->isActive();
 
-  g.setColour(Colour(0xff333333));
+  g.setColour(Colour(0xff14161c));
   g.fillRect(x + mod_buffer, y, width - 2 * mod_buffer, height);
 
   if (active)
-    g.setColour(Colour(0xff565656));
+    g.setColour(Colour(0xff2a2f3a));
   else
-    g.setColour(Colour(0xff333333));
+    g.setColour(Colour(0xff14161c));
   g.drawRect(slider.getLocalBounds());
 
   if (active)
     g.setColour(Colours::white);
   else
-    g.setColour(Colour(0xff555555));
+    g.setColour(Colour(0xff2e3440));
 
   g.setFont(Fonts::instance()->monospace().withPointHeight(height * text_percentage));
   g.drawText(slider.getTextFromValue(slider.getValue()),
@@ -65,9 +65,9 @@ void TextLookAndFeel::drawToggleButton(Graphics& g, ToggleButton& button,
   static const float text_percentage = 0.7f;
 
   if (button.getToggleState())
-    g.setColour(Colour(0xffffc400));
+    g.setColour(Colour(0xff54f2c6));
   else
-    g.setColour(Colour(0xff313131));
+    g.setColour(Colour(0xff121419));
   g.fillRect(button.getLocalBounds());
 
   g.setColour(Colours::white);
@@ -76,7 +76,7 @@ void TextLookAndFeel::drawToggleButton(Graphics& g, ToggleButton& button,
   g.drawText(button.getButtonText(), 0, 0,
              button.getWidth(), button.getHeight(), Justification::centred);
 
-  g.setColour(Colour(0xff565656));
+  g.setColour(Colour(0xff2a2f3a));
   g.drawRect(button.getLocalBounds());
 
   if (is_down) {
@@ -93,12 +93,12 @@ void TextLookAndFeel::drawTickBox(Graphics& g, Component& component,
                                   float x, float y, float w, float h, bool ticked,
                                   bool enabled, bool mouse_over, bool button_down) {
   float border_width = 1.5f;
-  g.setColour(Colour(0xffbbbbbb));
+  g.setColour(Colour(0xffc9d1da));
   g.drawRect(x + border_width, y + border_width,
              w - 2 * border_width, h - 2 * border_width, border_width);
 
   if (ticked) {
-    g.setColour(Colour(0xffffd740));
+    g.setColour(Colour(0xff54f2c6));
     g.fillRect(x + 3 * border_width, y + 3 * border_width,
                w - 6 * border_width, h - 6 * border_width);
   }

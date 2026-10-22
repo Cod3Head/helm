@@ -29,13 +29,13 @@ GlobalToolTip::GlobalToolTip() {
 GlobalToolTip::~GlobalToolTip() { }
 
 void GlobalToolTip::paint(Graphics& g) {
-  g.setColour(Colour(0xff383838));
+  g.setColour(Colour(0xff181b22));
   g.fillRect(0, 0, getWidth(), getHeight() / 2);
 
-  g.setColour(Colour(0xff444444));
+  g.setColour(Colour(0xff1e222a));
   g.fillRect(0, getHeight() / 2, getWidth(), getHeight() / 2);
 
-  g.setColour(Colour(0xffffffff));
+  g.setColour(Colour(0xfff1f4f7));
   g.setFont(Fonts::instance()->monospace().withPointHeight(proportionOfHeight(0.3f)));
   g.drawText(parameter_text_, 0.0, 0.0,
              getWidth(), proportionOfHeight(0.5), Justification::centred, false);

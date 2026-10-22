@@ -39,14 +39,14 @@ AboutSection::AboutSection(String name) : Overlay(name) {
   developer_link_ = new HyperlinkButton("Matt Tytel", URL("http://tytel.org"));
   developer_link_->setFont(Fonts::instance()->proportional_light().withPointHeight(16.0f),
                            false, Justification::right);
-  developer_link_->setColour(HyperlinkButton::textColourId, Colour(0xffffd740));
+  developer_link_->setColour(HyperlinkButton::textColourId, Colour(0xff54f2c6));
   addAndMakeVisible(developer_link_);
 
   free_software_link_ = new HyperlinkButton(TRANS("Read more about free software"),
                                             URL("http://www.gnu.org/philosophy/free-sw.html"));
   free_software_link_->setFont(Fonts::instance()->proportional_light().withPointHeight(12.0f),
                                false, Justification::right);
-  free_software_link_->setColour(HyperlinkButton::textColourId, Colour(0xffffd740));
+  free_software_link_->setColour(HyperlinkButton::textColourId, Colour(0xff54f2c6));
   addAndMakeVisible(free_software_link_);
 
   check_for_updates_ = new ToggleButton();
@@ -90,7 +90,7 @@ void AboutSection::paint(Graphics& g) {
 
   Rectangle<int> info_rect = getInfoRect();
   shadow.drawForRectangle(g, info_rect);
-  g.setColour(Colour(0xff303030));
+  g.setColour(Colour(0xff111318));
   g.fillRect(info_rect);
 
   g.saveState();
@@ -108,25 +108,30 @@ void AboutSection::paint(Graphics& g) {
   else
     g.drawImage(helm_small, 0, 0, 128, 128, 0, 0, 128, 128);
 
-  g.setFont(Fonts::instance()->proportional_regular().withPointHeight(32.0));
-  g.setColour(Colour(0xff2196f3));
-  g.drawText(TRANS("HELM"),
+  // Clear But Complex // SignalForge Synth title block (two lines so it clears the logo and credits).
+  g.setFont(Fonts::instance()->proportional_regular().withPointHeight(22.0));
+  g.setColour(Colors::audio);
+  g.drawText(TRANS("SIGNALFORGE"),
              0.0f, 0.0f,
-             info_rect.getWidth() - 2 * PADDING_X, 32.0f, Justification::centredTop);
+             info_rect.getWidth() - 2 * PADDING_X, 26.0f, Justification::centredTop);
+  g.setColour(Colour(0xfff1f4f7));
+  g.drawText(TRANS("SYNTH"),
+             0.0f, 26.0f,
+             info_rect.getWidth() - 2 * PADDING_X, 26.0f, Justification::centredTop);
 
   g.setFont(Fonts::instance()->proportional_light().withPointHeight(12.0));
-  g.setColour(Colour(0xff666666));
-  g.drawText(TRANS("v") + " " + ProjectInfo::versionString,
-             0.0f, 36.0f,
-             info_rect.getWidth() - 2 * PADDING_X, 32.0f, Justification::centredTop);
+  g.setColour(Colour(0xff9ca6b3));
+  g.drawText(TRANS("Clear But Complex") + "  v" + ProjectInfo::versionString,
+             0.0f, 56.0f,
+             info_rect.getWidth() - 2 * PADDING_X, 20.0f, Justification::centredTop);
 
   g.setFont(Fonts::instance()->proportional_light().withPointHeight(12.0));
-  g.drawText(TRANS("Developed by"),
+  g.drawText(TRANS("Based on Helm by"),
              0.0f, 4.0f,
              info_rect.getWidth() - 2 * PADDING_X, 20.0f, Justification::right);
 
-  g.setColour(Colour(0xffaaaaaa));
-  g.drawText(TRANS("Helm is free software and"),
+  g.setColour(Colour(0xffc9d1da));
+  g.drawText(TRANS("Free software (GPL-3.0) and"),
              0.0f, 62.0,
              info_rect.getWidth() - 2 * PADDING_X, 20.0f, Justification::topRight);
 

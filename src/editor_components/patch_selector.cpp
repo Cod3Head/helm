@@ -38,27 +38,27 @@ PatchSelector::PatchSelector() : SynthSection("patch_selector"),
   setLookAndFeel(BrowserLookAndFeel::instance());
   addButton(prev_patch_ = new TextButton("prev_patch"));
   prev_patch_->setButtonText(TRANS("<"));
-  prev_patch_->setColour(TextButton::buttonColourId, Colour(0xff464646));
+  prev_patch_->setColour(TextButton::buttonColourId, Colour(0xff20242c));
   prev_patch_->setColour(TextButton::textColourOffId, Colours::white);
 
   addButton(next_patch_ = new TextButton("next_patch"));
   next_patch_->setButtonText(TRANS(">"));
-  next_patch_->setColour(TextButton::buttonColourId, Colour(0xff464646));
+  next_patch_->setColour(TextButton::buttonColourId, Colour(0xff20242c));
   next_patch_->setColour(TextButton::textColourOffId, Colours::white);
 
   addButton(save_ = new TextButton("save"));
   save_->setButtonText(TRANS("SAVE"));
-  save_->setColour(TextButton::buttonColourId, Colour(0xff303030));
+  save_->setColour(TextButton::buttonColourId, Colour(0xff111318));
   save_->setColour(TextButton::textColourOffId, Colours::white);
 
   addButton(export_ = new TextButton("export"));
   export_->setButtonText(TRANS("EXPORT"));
-  export_->setColour(TextButton::buttonColourId, Colour(0xff303030));
+  export_->setColour(TextButton::buttonColourId, Colour(0xff111318));
   export_->setColour(TextButton::textColourOffId, Colours::white);
 
   addButton(browse_ = new TextButton("browse"));
   browse_->setButtonText(TRANS("BROWSE"));
-  browse_->setColour(TextButton::buttonColourId, Colour(0xff303030));
+  browse_->setColour(TextButton::buttonColourId, Colour(0xff111318));
   browse_->setColour(TextButton::textColourOffId, Colours::white);
 }
 
@@ -91,7 +91,7 @@ void PatchSelector::paint(Graphics& g) {
   g.setFont(Fonts::instance()->monospace().withPointHeight(size_ratio_ * 12.0f));
   g.setColour(Colors::control_label_text);
   g.drawFittedText(folder_text_, top, Justification::centredLeft, 1);
-  g.setColour(Colour(0xffffffff));
+  g.setColour(Colour(0xfff1f4f7));
   g.drawFittedText(patch_text_, bottom, Justification::centredLeft, 1);
 }
 
@@ -99,10 +99,10 @@ void PatchSelector::paint(Graphics& g) {
 void PatchSelector::paintBackground(Graphics& g) {
   static const DropShadow shadow(Colour(0xff000000), 4, Point<int>(0, 0));
 
-  g.setColour(Colour(0xff383838));
+  g.setColour(Colour(0xff181b22));
   g.fillRect(0, 0, getWidth(), proportionOfHeight(BROWSE_PERCENT));
 
-  g.setColour(Colour(0xff444444));
+  g.setColour(Colour(0xff1e222a));
   g.fillRect(0, proportionOfHeight(BROWSE_PERCENT), getWidth(), proportionOfHeight(BROWSE_PERCENT));
 
   int browse_height = proportionOfHeight(BROWSE_PERCENT);

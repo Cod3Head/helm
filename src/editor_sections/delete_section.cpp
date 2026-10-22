@@ -45,14 +45,14 @@ void DeleteSection::paint(Graphics& g) {
 
   Rectangle<int> delete_rect = getDeleteRect();
   shadow.drawForRectangle(g, delete_rect);
-  g.setColour(Colour(0xff303030));
+  g.setColour(Colour(0xff111318));
   g.fillRect(delete_rect);
 
   g.saveState();
   g.setOrigin(delete_rect.getX() + PADDING_X, delete_rect.getY() + PADDING_Y);
 
   g.setFont(Fonts::instance()->proportional_light().withPointHeight(14.0f));
-  g.setColour(Colour(0xffaaaaaa));
+  g.setColour(Colour(0xffb3bcc7));
 
   String text;
   if (file_.isDirectory())

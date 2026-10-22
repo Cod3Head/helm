@@ -1,4 +1,5 @@
 /* Copyright 2013-2017 Matt Tytel
+ * Clear But Complex // SignalForge Synth palette, 2026.
  *
  * helm is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +17,16 @@
 
 #include "colors.h"
 
-const Colour Colors::background(0xff181818);
-const Colour Colors::tab_heading(0xff303030);
-const Colour Colors::tab_body(0xff303030);
-const Colour Colors::tab_heading_text(0xffbbbbbb);
-const Colour Colors::audio(0xff03a9f4);
-const Colour Colors::modulation(0xff00e676);
-const Colour Colors::graph_disable(0xff777777);
-const Colour Colors::graph_fill(0xff565656);
-const Colour Colors::control_label_text(0xffbbbbbb);
-const Colour Colors::info_background(0xff303030);
-const Colour Colors::overlay_screen(0xbb212121);
+// SignalForge design language: near-black base, slate panels, mint primary accent,
+// hot pink for modulation and the single hero action on a screen.
+const Colour Colors::background(0xff08090b);
+const Colour Colors::tab_heading(0xff14161c);
+const Colour Colors::tab_body(0xff111318);
+const Colour Colors::tab_heading_text(0xfff1f4f7);
+const Colour Colors::audio(0xff54f2c6);
+const Colour Colors::modulation(0xffff2d55);
+const Colour Colors::graph_disable(0xff5a6270);
+const Colour Colors::graph_fill(0xff2a2f3a);
+const Colour Colors::control_label_text(0xff9ca6b3);
+const Colour Colors::info_background(0xff14161c);
+const Colour Colors::overlay_screen(0xcc08090b);

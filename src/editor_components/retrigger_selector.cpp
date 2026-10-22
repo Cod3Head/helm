@@ -53,10 +53,10 @@ void RetriggerSelector::mouseDown(const MouseEvent& e) {
 }
 
 void RetriggerSelector::paint(Graphics& g) {
-  g.setColour(Colour(0xffbbbbbb));
+  g.setColour(Colour(0xffc9d1da));
   g.fillRect(0, 0, getWidth(), getHeight());
 
-  g.setColour(Colour(0xff222222));
+  g.setColour(Colour(0xff0f1115));
   g.fillPath(arrow_);
 
   g.setFont(Fonts::instance()->monospace());

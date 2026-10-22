@@ -68,9 +68,9 @@ void WaveViewer::paint(juce::Graphics &g) {
 void WaveViewer::paintBackground(Graphics& g) {
   static const DropShadow shadow(Colour(0xbb000000), 5, Point<int>(0, 0));
 
-  g.fillAll(Colour(0xff424242));
+  g.fillAll(Colour(0xff1c1f27));
 
-  g.setColour(Colour(0xff4a4a4a));
+  g.setColour(Colour(0xff242832));
   for (int x = 0; x < getWidth(); x += GRID_CELL_WIDTH)
     g.drawLine(x, 0, x, getHeight());
   for (int y = 0; y < getHeight(); y += GRID_CELL_WIDTH)

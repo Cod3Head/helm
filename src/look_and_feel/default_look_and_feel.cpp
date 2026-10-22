@@ -23,13 +23,13 @@
 #define POWER_ARC_ANGLE 2.5
 
 DefaultLookAndFeel::DefaultLookAndFeel() {
-  setColour(PopupMenu::backgroundColourId, Colour(0xff333333));
-  setColour(PopupMenu::textColourId, Colour(0xffcccccc));
-  setColour(PopupMenu::headerTextColourId, Colour(0xff333333));
-  setColour(PopupMenu::highlightedBackgroundColourId, Colour(0xff111111));
-  setColour(PopupMenu::highlightedTextColourId, Colour(0xffcccccc));
-  setColour(BubbleComponent::backgroundColourId, Colour(0xff222222));
-  setColour(TooltipWindow::textColourId, Colour(0xffdddddd));
+  setColour(PopupMenu::backgroundColourId, Colour(0xff14161c));
+  setColour(PopupMenu::textColourId, Colour(0xffd5dce3));
+  setColour(PopupMenu::headerTextColourId, Colour(0xff14161c));
+  setColour(PopupMenu::highlightedBackgroundColourId, Colour(0xff0b0c0f));
+  setColour(PopupMenu::highlightedTextColourId, Colour(0xffd5dce3));
+  setColour(BubbleComponent::backgroundColourId, Colour(0xff0f1115));
+  setColour(TooltipWindow::textColourId, Colour(0xffe3e8ed));
 }
                                                 
 void DefaultLookAndFeel::drawLinearSlider(Graphics& g, int x, int y, int width, int height,
@@ -47,13 +47,13 @@ void DefaultLookAndFeel::drawLinearSlider(Graphics& g, int x, int y, int width, 
     active = s_slider->isActive();
   }
 
-  Colour slider_color(0xff888888);
+  Colour slider_color(0xff8a94a1);
   Colour lighten_color(0x55ffffff);
-  Colour thumb_color(0xffffffff);
+  Colour thumb_color(0xfff1f4f7);
 
   if (!active) {
-    slider_color = Colour(0xff424242);
-    thumb_color = Colour(0xff888888);
+    slider_color = Colour(0xff1c1f27);
+    thumb_color = Colour(0xff8a94a1);
     lighten_color = Colour(0x22ffffff);
   }
 
@@ -64,7 +64,7 @@ void DefaultLookAndFeel::drawLinearSlider(Graphics& g, int x, int y, int width, 
     float h = slider.getHeight();
     g.fillRect(0.0f, 0.0f, w, h);
 
-    g.setColour(Colour(0xff2a2a2a));
+    g.setColour(Colour(0xff111318));
     fillSplitHorizontalRect(g, 0.0f, w, h, Colours::transparentBlack);
 
     g.setColour(slider_color);
@@ -85,7 +85,7 @@ void DefaultLookAndFeel::drawLinearSlider(Graphics& g, int x, int y, int width, 
     float h = slider.getHeight();
     g.fillRect(0.0f, 0.0f, w, h);
 
-    g.setColour(Colour(0xff2a2a2a));
+    g.setColour(Colour(0xff111318));
     fillSplitVerticalRect(g, 0.0f, h, w, Colours::transparentBlack);
 
     g.setColour(slider_color);
@@ -130,10 +130,10 @@ void DefaultLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, 
     Rectangle<float> text_bounds(1.0f + width * (1.0f - TEXT_W_PERCENT) / 2.0f,
                                  0.5f * height, width * TEXT_W_PERCENT, 0.5f * height);
 
-    g.setColour(Colour(0xff464646));
+    g.setColour(Colour(0xff20242c));
     g.fillRoundedRectangle(text_bounds, 2.0f);
 
-    g.setColour(Colour(0xff999999));
+    g.setColour(Colour(0xff9ca6b3));
     g.setFont(Fonts::instance()->proportional_regular().withPointHeight(0.2f * height));
     g.drawFittedText(String(slider.getValue()), text_bounds.getSmallestIntegerContainer(),
                      Justification::horizontallyCentred | Justification::bottom, 1);
@@ -153,9 +153,9 @@ void DefaultLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, 
                      0.0f, start_angle, end_angle, true);
 
   if (active)
-    g.setColour(Colour(0xff4a4a4a));
+    g.setColour(Colour(0xff242832));
   else
-    g.setColour(Colour(0xff333333));
+    g.setColour(Colour(0xff14161c));
 
   g.strokePath(rail, outer_stroke);
 
@@ -169,16 +169,16 @@ void DefaultLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, 
   }
 
   if (active)
-    g.setColour(Colour(0xffffab00));
+    g.setColour(Colour(0xff54f2c6));
   else
-    g.setColour(Colour(0xff555555));
+    g.setColour(Colour(0xff2e3440));
 
   g.strokePath(active_section, outer_stroke);
 
   if (active)
     g.setColour(Colour(0xff000000));
   else
-    g.setColour(Colour(0xff444444));
+    g.setColour(Colour(0xff1e222a));
 
   g.fillEllipse(full_radius - knob_radius,
                 full_radius - knob_radius,
@@ -186,16 +186,16 @@ void DefaultLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, 
                 2.0f * knob_radius);
 
   if (active)
-    g.setColour(Colour(0xff666666));
+    g.setColour(Colour(0xff5f6875));
   else
-    g.setColour(Colour(0xff555555));
+    g.setColour(Colour(0xff2e3440));
 
   g.drawEllipse(full_radius - knob_radius + stroke_width / 4.0f + 0.5f,
                 full_radius - knob_radius + stroke_width / 4.0f + 0.5f,
                 2.0f * knob_radius - stroke_width / 2.0f - 1.0f,
                 2.0f * knob_radius - stroke_width / 2.0f - 1.0f, 1.5f);
 
-  g.setColour(Colour(0xff999999));
+  g.setColour(Colour(0xff9ca6b3));
   g.drawLine(full_radius, full_radius, end_x, end_y, 1.0f);
 }
 
@@ -245,11 +245,11 @@ void DefaultLookAndFeel::drawButtonBackground(Graphics& g, Button& button,
                                               bool hover,
                                               bool is_down) {
   if (button.isEnabled())
-    g.fillAll(Colour(0xff323232));
+    g.fillAll(Colour(0xff14161c));
   else
-    g.fillAll(Colour(0xff484848));
+    g.fillAll(Colour(0xff22262f));
 
-  g.setColour(Colour(0xff505050));
+  g.setColour(Colour(0xff2a2f3a));
   g.drawRect(button.getLocalBounds());
 
   if (is_down)
@@ -262,9 +262,9 @@ void DefaultLookAndFeel::drawButtonText(Graphics& g, TextButton& button,
                                         bool hover, bool is_down) {
   g.setFont(Fonts::instance()->proportional_regular().withPointHeight(14.0f));
   if (button.isEnabled())
-    g.setColour(Colour(0xffaaaaaa));
+    g.setColour(Colour(0xffb3bcc7));
   else
-    g.setColour(Colour(0xff666666));
+    g.setColour(Colour(0xff5f6875));
 
   g.drawFittedText(button.getName(), button.getLocalBounds(), Justification::centred, 1);
 }

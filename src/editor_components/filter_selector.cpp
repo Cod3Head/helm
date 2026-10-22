@@ -28,19 +28,19 @@ void FilterSelector::paint(Graphics& g) {
   int num_types = getMaximum() - getMinimum() + 1;
   float cell_width = float(getWidth()) / num_types;
 
-  g.setColour(Colour(0xff222222));
+  g.setColour(Colour(0xff0f1115));
   g.fillRect(getLocalBounds());
 
-  g.setColour(Colour(0xff424242));
+  g.setColour(Colour(0xff1c1f27));
   g.fillRect(selected * cell_width, 0.0f, cell_width, float(getHeight()));
 
-  g.setColour(selected == 0 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+  g.setColour(selected == 0 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
   g.strokePath(low_shelf_, stroke);
 
-  g.setColour(selected == 1 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+  g.setColour(selected == 1 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
   g.strokePath(band_shelf_, stroke);
 
-  g.setColour(selected == 2 ? Colour(0xffffffff) : Colour(0xffaaaaaa));
+  g.setColour(selected == 2 ? Colour(0xfff1f4f7) : Colour(0xffb3bcc7));
   g.strokePath(high_shelf_, stroke);
 }
 

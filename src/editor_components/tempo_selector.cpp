@@ -70,12 +70,12 @@ void TempoSelector::valueChanged() {
 
 void TempoSelector::paint(Graphics& g) {
   if (isActive())
-    g.setColour(Colour(0xffbbbbbb));
+    g.setColour(Colour(0xffc9d1da));
   else
-    g.setColour(Colour(0xff555555));
+    g.setColour(Colour(0xff2e3440));
   g.fillRect(0, 0, getWidth(), getHeight());
 
-  g.setColour(Colour(0xff222222));
+  g.setColour(Colour(0xff0f1115));
   g.fillPath(arrow_);
 
   int value = getValue() + 1;

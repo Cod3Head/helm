@@ -113,10 +113,10 @@ public:
 
    #if JUCE_GCC
     // NB these are here as a workaround because GCC refuses to bind to packed values.
-    forcedinline uint8& getAlpha() noexcept           { return comps [indexA]; }
-    forcedinline uint8& getRed() noexcept             { return comps [indexR]; }
-    forcedinline uint8& getGreen() noexcept           { return comps [indexG]; }
-    forcedinline uint8& getBlue() noexcept            { return comps [indexB]; }
+    forcedinline uint8& getAlpha() noexcept           { return reinterpret_cast<uint8*> (this)[indexA]; }  /* CBC: GCC 9+ rejects refs to packed members */
+    forcedinline uint8& getRed() noexcept             { return reinterpret_cast<uint8*> (this)[indexR]; }  /* CBC: GCC 9+ rejects refs to packed members */
+    forcedinline uint8& getGreen() noexcept           { return reinterpret_cast<uint8*> (this)[indexG]; }  /* CBC: GCC 9+ rejects refs to packed members */
+    forcedinline uint8& getBlue() noexcept            { return reinterpret_cast<uint8*> (this)[indexB]; }  /* CBC: GCC 9+ rejects refs to packed members */
    #else
     forcedinline uint8& getAlpha() noexcept           { return components.a; }
     forcedinline uint8& getRed() noexcept             { return components.r; }

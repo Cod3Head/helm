@@ -45,12 +45,12 @@ OpenGLOscilloscope::~OpenGLOscilloscope() {
 }
 
 void OpenGLOscilloscope::paintBackground(Graphics& g) {
-  g.fillAll(Colour(0xff424242));
+  g.fillAll(Colour(0xff1c1f27));
 
   int width = getWidth();
   int height = getHeight();
 
-  g.setColour(Colour(0xff4a4a4a));
+  g.setColour(Colour(0xff242832));
   for (int x = 0; x < width; x += GRID_CELL_WIDTH)
     g.drawLine(x, 0, x, height);
   for (int y = 0; y < height; y += GRID_CELL_WIDTH)

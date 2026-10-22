@@ -38,7 +38,7 @@ void GraphicalStepSequencer::paintBackground(Graphics& g) {
   if (sequence_.size() == 0 || num_steps_slider_ == nullptr)
     return;
 
-  g.fillAll(Colour(0xff424242));
+  g.fillAll(Colour(0xff1c1f27));
 
   float x_inc = getWidth() / (1.0f * num_steps_);
   float line_width = 1.5f * getHeight() / 80.0f;

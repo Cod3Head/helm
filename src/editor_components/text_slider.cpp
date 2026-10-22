@@ -29,7 +29,7 @@ void TextSlider::paint(Graphics& g) {
   float height = getHeight();
 
   int selected = getValue();
-  g.setColour(Colour(0xff424242));
+  g.setColour(Colour(0xff1c1f27));
   g.fillRect(selected * cell_width, 0.0f, cell_width, height);
 
   g.setFont(Fonts::instance()->proportional_regular().withPointHeight(height * text_percentage));
@@ -40,9 +40,9 @@ void TextSlider::paint(Graphics& g) {
 
   for (int i = 0; i < num_types; ++i) {
     if (selected == i)
-      g.setColour(Colour(0xffffffff));
+      g.setColour(Colour(0xfff1f4f7));
     else
-      g.setColour(Colour(0xffaaaaaa));
+      g.setColour(Colour(0xffb3bcc7));
 
     g.drawText(lookup[i], i * cell_width, 0.0f, cell_width, height, Justification::centred);
   }

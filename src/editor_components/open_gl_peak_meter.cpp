@@ -132,9 +132,9 @@ void OpenGLPeakMeter::destroy(OpenGLContext& open_gl_context) {
 
 void OpenGLPeakMeter::paintBackground(Graphics& g) {
   float x = getWidth() / sqrt(MAX_GAIN);
-  g.setColour(Colour(0xff222222));
+  g.setColour(Colour(0xff0f1115));
   g.fillRect(x, 0.0f, getWidth() - x, 1.0f * getHeight());
 
-  g.setColour(Colour(0xff888888));
+  g.setColour(Colour(0xff8a94a1));
   g.fillRect(x - 1.0f, 0.0f, 2.0f, 1.0f * getHeight());
 }
