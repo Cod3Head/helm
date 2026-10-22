@@ -1,0 +1,61 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  linux-standalone:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config \
+            libasound2-dev libfreetype6-dev libx11-dev libxext-dev \
+            libxinerama-dev libxcursor-dev libxrandr-dev \
+            mesa-common-dev libgl1-mesa-dev libcurl4-openssl-dev
+      - name: Build standalone
+        shell: bash
+        run: make standalone CONFIG=Release 2>&1 | tee build.log
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-build-log
+          path: build.log
+      - name: Upload standalone binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: helm-linux-standalone
+          path: standalone/builds/linux/build/helm
+          if-no-files-found: warn
+
+  windows-standalone:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: microsoft/setup-msbuild@v2
+      - name: Build standalone (Visual Studio 2022 project)
+        shell: pwsh
+        run: |
+          msbuild standalone/builds/vs17/Helm.sln /m /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v143 /verbosity:minimal 2>&1 | Tee-Object -FilePath build.log
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build-log
+          path: build.log
+      - name: Upload build output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: helm-windows-standalone
+          path: standalone/builds/vs17/**/Release/**/*.exe
+          if-no-files-found: warn
