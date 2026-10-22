@@ -20,6 +20,7 @@
 
 #include "JuceHeader.h"
 #include "overlay.h"
+#include "crew_sprite.h"
 
 class DeleteSection : public Overlay, public Button::Listener {
   public:
@@ -50,6 +51,7 @@ class DeleteSection : public Overlay, public Button::Listener {
 
     ScopedPointer<TextButton> delete_button_;
     ScopedPointer<TextButton> cancel_button_;
+    ScopedPointer<CrewSprite> catalina_;
 
     Array<Listener*> listeners_;
 

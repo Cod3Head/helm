@@ -21,8 +21,10 @@
 #include "helm_common.h"
 #include "text_look_and_feel.h"
 
-#define DELETE_WIDTH 340
-#define DELETE_HEIGHT 140
+#define DELETE_WIDTH 470
+#define DELETE_HEIGHT 190
+#define CREW_WIDTH 84
+#define CREW_HEIGHT 112
 #define PADDING_X 25
 #define PADDING_Y 20
 #define BUTTON_HEIGHT 30
@@ -35,6 +37,10 @@ DeleteSection::DeleteSection(String name) : Overlay(name) {
   cancel_button_ = new TextButton(TRANS("Cancel"));
   cancel_button_->addListener(this);
   addAndMakeVisible(cancel_button_);
+
+  // Catalina handles warnings in SignalForge, so she handles deletes here.
+  catalina_ = new CrewSprite(CrewSprite::kCatalina);
+  addAndMakeVisible(catalina_);
 }
 
 void DeleteSection::paint(Graphics& g) {
@@ -48,26 +54,32 @@ void DeleteSection::paint(Graphics& g) {
   g.setColour(Colour(0xff111318));
   g.fillRect(delete_rect);
 
+  int text_x = CREW_WIDTH + PADDING_X;
+  int text_width = delete_rect.getWidth() - text_x - PADDING_X;
   g.saveState();
-  g.setOrigin(delete_rect.getX() + PADDING_X, delete_rect.getY() + PADDING_Y);
+  g.setOrigin(delete_rect.getX() + text_x, delete_rect.getY() + PADDING_Y);
 
   g.setFont(Fonts::instance()->proportional_light().withPointHeight(14.0f));
   g.setColour(Colour(0xffb3bcc7));
 
   String text;
   if (file_.isDirectory())
-    text = TRANS("Are you sure you want to delte this folder?");
+    text = TRANS("Are you sure you want to delete this folder?");
   else
-  text = TRANS("Are you sure you want to delte this patch?");
-  g.drawText(text,
-             0, 0.0f, delete_rect.getWidth() - 2 * PADDING_X, 22.0f,
-             Justification::centred, false);
+    text = TRANS("Are you sure you want to delete this patch?");
+  g.drawText(text, 0, 0.0f, text_width, 22.0f, Justification::centred, false);
 
   g.setFont(Fonts::instance()->monospace().withPointHeight(16.0f));
   g.setColour(Colors::audio);
   g.drawText(file_.getFileNameWithoutExtension(),
-             0, 20.0f, delete_rect.getWidth() - 2 * PADDING_X, 22.0f,
-             Justification::centred, false);
+             0, 22.0f, text_width, 22.0f, Justification::centred, false);
+
+  g.setFont(Fonts::instance()->proportional_light().withPointHeight(12.0f));
+  g.setColour(Colors::modulation);
+  g.drawText(TRANS("Catalina says:"), 0, 54.0f, text_width, 16.0f, Justification::centredLeft);
+  g.setColour(Colour(0xffc9d1da));
+  g.drawFittedText(TRANS("Deleting the evidence? Bold production technique. Save a version first."),
+                   0, 70, text_width, 34, Justification::topLeft, 2);
 
   g.restoreState();
 }
@@ -75,11 +87,17 @@ void DeleteSection::paint(Graphics& g) {
 void DeleteSection::resized() {
   Rectangle<int> delete_rect = getDeleteRect();
 
-  float button_width = (delete_rect.getWidth() - 3 * PADDING_X) / 2.0f;
-  delete_button_->setBounds(delete_rect.getX() + PADDING_X,
+  catalina_->setBounds(delete_rect.getX() + PADDING_X / 2,
+                       delete_rect.getBottom() - PADDING_Y / 2 - CREW_HEIGHT,
+                       CREW_WIDTH, CREW_HEIGHT);
+
+  int text_x = delete_rect.getX() + CREW_WIDTH + PADDING_X;
+  int text_width = delete_rect.getRight() - PADDING_X - text_x;
+  float button_width = (text_width - PADDING_X) / 2.0f;
+  delete_button_->setBounds(text_x,
                             delete_rect.getBottom() - PADDING_Y - BUTTON_HEIGHT,
                             button_width, BUTTON_HEIGHT);
-  cancel_button_->setBounds(delete_rect.getX() + button_width + 2 * PADDING_X,
+  cancel_button_->setBounds(text_x + button_width + PADDING_X,
                             delete_rect.getBottom() - PADDING_Y - BUTTON_HEIGHT,
                             button_width, BUTTON_HEIGHT);
 }

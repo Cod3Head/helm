@@ -1,5 +1,5 @@
 /* Copyright 2013-2017 Matt Tytel
- * Clear But Complex // SignalForge Synth palette, 2026.
+ * Clear But Complex // Kindred palette, 2026.
  *
  * helm is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

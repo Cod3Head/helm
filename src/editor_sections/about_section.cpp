@@ -25,8 +25,12 @@
 
 #define LOGO_WIDTH 128
 #define INFO_WIDTH 470
-#define STANDALONE_INFO_HEIGHT 550
-#define PLUGIN_INFO_HEIGHT 227
+#define CREW_HEADING 18
+#define CREW_SPRITE_HEIGHT 112
+#define CREW_LABELS 32
+#define CREW_HEIGHT (CREW_HEADING + CREW_SPRITE_HEIGHT + CREW_LABELS)
+#define STANDALONE_INFO_HEIGHT (550 + CREW_HEIGHT)
+#define PLUGIN_INFO_HEIGHT (227 + CREW_HEIGHT)
 #define PADDING_X 25
 #define PADDING_Y 15
 #define BUTTON_WIDTH 16
@@ -80,6 +84,11 @@ AboutSection::AboutSection(String name) : Overlay(name) {
   size_button_extra_large_->addListener(this);
 
   size_button_extra_large_->setLookAndFeel(DefaultLookAndFeel::instance());
+
+  for (int i = 0; i < 3; ++i) {
+    crew_[i] = new CrewSprite(static_cast<CrewSprite::Member>(i));
+    addAndMakeVisible(crew_[i]);
+  }
 }
 
 void AboutSection::paint(Graphics& g) {
@@ -108,21 +117,17 @@ void AboutSection::paint(Graphics& g) {
   else
     g.drawImage(helm_small, 0, 0, 128, 128, 0, 0, 128, 128);
 
-  // Clear But Complex // SignalForge Synth title block (two lines so it clears the logo and credits).
-  g.setFont(Fonts::instance()->proportional_regular().withPointHeight(22.0));
+  // Clear But Complex // Kindred title block.
+  g.setFont(Fonts::instance()->proportional_regular().withPointHeight(32.0));
   g.setColour(Colors::audio);
-  g.drawText(TRANS("SIGNALFORGE"),
+  g.drawText(TRANS("KINDRED"),
              0.0f, 0.0f,
-             info_rect.getWidth() - 2 * PADDING_X, 26.0f, Justification::centredTop);
-  g.setColour(Colour(0xfff1f4f7));
-  g.drawText(TRANS("SYNTH"),
-             0.0f, 26.0f,
-             info_rect.getWidth() - 2 * PADDING_X, 26.0f, Justification::centredTop);
+             info_rect.getWidth() - 2 * PADDING_X, 36.0f, Justification::centredTop);
 
   g.setFont(Fonts::instance()->proportional_light().withPointHeight(12.0));
   g.setColour(Colour(0xff9ca6b3));
   g.drawText(TRANS("Clear But Complex") + "  v" + ProjectInfo::versionString,
-             0.0f, 56.0f,
+             0.0f, 40.0f,
              info_rect.getWidth() - 2 * PADDING_X, 20.0f, Justification::centredTop);
 
   g.setFont(Fonts::instance()->proportional_light().withPointHeight(12.0));
@@ -154,6 +159,28 @@ void AboutSection::paint(Graphics& g) {
              20.0f, Justification::topRight);
 
   g.restoreState();
+
+  if (crew_[0] != nullptr) {
+    g.setFont(Fonts::instance()->proportional_light().withPointHeight(11.0));
+    g.setColour(Colour(0xff9ca6b3));
+    g.drawText(TRANS("THE KINDRED CREW"),
+               info_rect.getX(), crew_[0]->getY() - CREW_HEADING,
+               info_rect.getWidth(), CREW_HEADING, Justification::centredTop);
+
+    for (int i = 0; i < 3; ++i) {
+      CrewSprite::Member member = static_cast<CrewSprite::Member>(i);
+      Rectangle<int> sprite = crew_[i]->getBounds();
+      int label_x = sprite.getCentreX() - 70;
+      g.setFont(Fonts::instance()->proportional_regular().withPointHeight(13.0));
+      g.setColour(i == CrewSprite::kPersefone ? Colors::modulation : Colors::audio);
+      g.drawText(CrewSprite::nameOf(member), label_x, sprite.getBottom() + 2, 140, 16,
+                 Justification::centred);
+      g.setFont(Fonts::instance()->proportional_light().withPointHeight(11.0));
+      g.setColour(Colour(0xff9ca6b3));
+      g.drawText(CrewSprite::roleOf(member), label_x, sprite.getBottom() + 17, 140, 14,
+                 Justification::centred);
+    }
+  }
 }
 
 void AboutSection::resized() {
@@ -186,8 +213,18 @@ void AboutSection::resized() {
   size_button_small_->setBounds(size_button_normal_->getX() - size_padding - size_width, size_y,
                                 size_width, size_height);
 
+  int crew_y = size_button_extra_large_->getBottom() + PADDING_Y + CREW_HEADING;
+  int crew_width = CREW_SPRITE_HEIGHT * 3 / 4;
+  int crew_slot = (info_rect.getWidth() - 2 * PADDING_X) / 3;
+  for (int i = 0; i < 3; ++i) {
+    if (crew_[i] == nullptr)
+      continue;
+    int centre = info_rect.getX() + PADDING_X + crew_slot * i + crew_slot / 2;
+    crew_[i]->setBounds(centre - crew_width / 2, crew_y, crew_width, CREW_SPRITE_HEIGHT);
+  }
+
   if (device_selector_) {
-    int y = size_button_extra_large_->getBottom() + PADDING_Y;
+    int y = crew_y + CREW_SPRITE_HEIGHT + CREW_LABELS + PADDING_Y;
     device_selector_->setBounds(info_rect.getX(), y,
                                 info_rect.getWidth(), info_rect.getBottom() - y);
   }
@@ -243,6 +280,8 @@ void AboutSection::buttonClicked(Button* clicked_button) {
 
 Rectangle<int> AboutSection::getInfoRect() {
   int info_height = device_selector_ ? STANDALONE_INFO_HEIGHT : PLUGIN_INFO_HEIGHT;
+  // CBC: the crew row makes the panel taller; never let it run off a small window.
+  info_height = jmin(info_height, getHeight() - 16);
   int x = (getWidth() - INFO_WIDTH) / 2;
   int y = (getHeight() - info_height) / 2;
   return Rectangle<int>(x, y, INFO_WIDTH, info_height);

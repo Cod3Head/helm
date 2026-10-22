@@ -21,6 +21,7 @@
 #include "JuceHeader.h"
 #include "file_list_box_model.h"
 #include "overlay.h"
+#include "crew_sprite.h"
 
 class SaveSection : public Overlay, public TextEditor::Listener,
                     public FileListBoxModel::Listener, public Button::Listener {
@@ -67,6 +68,7 @@ class SaveSection : public Overlay, public TextEditor::Listener,
 
     ScopedPointer<TextButton> save_button_;
     ScopedPointer<TextButton> cancel_button_;
+    ScopedPointer<CrewSprite> persefone_;
     ScopedPointer<TextButton> add_bank_button_;
     ScopedPointer<TextButton> add_folder_button_;
 

@@ -105,6 +105,10 @@ SaveSection::SaveSection(String name) : Overlay(name) {
   cancel_button_->addListener(this);
   addAndMakeVisible(cancel_button_);
 
+  // Persefone cheers people on in SignalForge, so she keeps them company while saving.
+  persefone_ = new CrewSprite(CrewSprite::kPersefone);
+  addAndMakeVisible(persefone_);
+
   add_bank_button_ = new TextButton("+");
   add_bank_button_->addListener(this);
   addAndMakeVisible(add_bank_button_);
@@ -183,6 +187,12 @@ void SaveSection::resized() {
   add_bank_name_->setBounds(folder_x + ADD_FOLDER_HEIGHT, bank_y + bank_folder_height,
                             folder_width - ADD_FOLDER_HEIGHT, ADD_FOLDER_HEIGHT);
   folders_view_->setBounds(folder_x, folder_y, folder_width, bank_folder_height);
+
+  // Persefone stands in the free left column, under FOLDER and above Cancel.
+  int crew_height = jmin(104, (int)(cancel_button_->getY() - folder_y - 2 * PADDING_Y));
+  int crew_width = crew_height * 3 / 4;
+  persefone_->setBounds(save_rect.getX() + PADDING_X + (DIVISION - 10 - crew_width) / 2,
+                        cancel_button_->getY() - 4 - crew_height, crew_width, crew_height);
 }
 
 void SaveSection::visibilityChanged() {

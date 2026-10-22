@@ -312,10 +312,10 @@
  #define JucePlugin_Enable_IAA             0
 #endif
 #ifndef  JucePlugin_Name
- #define JucePlugin_Name                   "SignalForge Synth"
+ #define JucePlugin_Name                   "Kindred"
 #endif
 #ifndef  JucePlugin_Desc
- #define JucePlugin_Desc                   "Clear But Complex // SignalForge Synth"
+ #define JucePlugin_Desc                   "Clear But Complex // Kindred"
 #endif
 #ifndef  JucePlugin_Manufacturer
  #define JucePlugin_Manufacturer           "Clear But Complex"
@@ -330,7 +330,7 @@
  #define JucePlugin_ManufacturerCode       0x43624378 // 'CbCx'
 #endif
 #ifndef  JucePlugin_PluginCode
- #define JucePlugin_PluginCode             0x53465379 // 'SFSy'
+ #define JucePlugin_PluginCode             0x4b6e6472 // 'Kndr'
 #endif
 #ifndef  JucePlugin_IsSynth
  #define JucePlugin_IsSynth                1
@@ -381,7 +381,7 @@
  #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode
 #endif
 #ifndef  JucePlugin_CFBundleIdentifier
- #define JucePlugin_CFBundleIdentifier     com.clearbutcomplex.signalforgesynth.plugin
+ #define JucePlugin_CFBundleIdentifier     com.clearbutcomplex.kindred.plugin
 #endif
 #ifndef  JucePlugin_RTASCategory
  #define JucePlugin_RTASCategory           0
@@ -399,7 +399,7 @@
  #define JucePlugin_RTASDisableMultiMono   0
 #endif
 #ifndef  JucePlugin_AAXIdentifier
- #define JucePlugin_AAXIdentifier          com.clearbutcomplex.signalforgesynth
+ #define JucePlugin_AAXIdentifier          com.clearbutcomplex.kindred
 #endif
 #ifndef  JucePlugin_AAXManufacturerCode
  #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode

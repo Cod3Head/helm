@@ -20,6 +20,7 @@
 
 #include "JuceHeader.h"
 #include "overlay.h"
+#include "crew_sprite.h"
 
 class AboutSection : public Overlay, public Button::Listener {
   public:
@@ -47,6 +48,9 @@ class AboutSection : public Overlay, public Button::Listener {
     ScopedPointer<Button> size_button_normal_;
     ScopedPointer<Button> size_button_large_;
     ScopedPointer<Button> size_button_extra_large_;
+
+    // Kindred crew from SignalForge: Amelia, Catalina, Persefone.
+    ScopedPointer<CrewSprite> crew_[3];
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AboutSection)
 };

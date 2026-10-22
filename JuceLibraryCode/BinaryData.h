@@ -77,8 +77,17 @@ namespace BinaryData
     extern const char*   modulation_unselected_inactive_2x_png;
     const int            modulation_unselected_inactive_2x_pngSize = 4996;
 
+    extern const char*   crew_amelia_png;
+    const int            crew_amelia_pngSize = 215128;
+
+    extern const char*   crew_catalina_png;
+    const int            crew_catalina_pngSize = 209981;
+
+    extern const char*   crew_persefone_png;
+    const int            crew_persefone_pngSize = 254374;
+
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 23;
+    const int namedResourceListSize = 26;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

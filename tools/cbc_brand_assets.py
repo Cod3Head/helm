@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Clear But Complex // SignalForge Synth brand assets.
+"""Clear But Complex // Kindred brand assets.
 
 Draws the product icon (a sibling of the SignalForge icon: mint rounded frame,
 dark field, one hot-pink accent) at every size the app uses, writes the PNG/ICO
