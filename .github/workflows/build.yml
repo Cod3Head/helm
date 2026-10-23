@@ -46,6 +46,23 @@ jobs:
         shell: pwsh
         run: |
           msbuild standalone/builds/vs17/Helm.sln /m /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v143 /p:WindowsTargetPlatformVersion=10.0 /verbosity:minimal 2>&1 | Tee-Object -FilePath build.log
+      - name: Report compiler errors as annotations
+        if: failure()
+        shell: pwsh
+        run: |
+          $errors = Select-String -Path build.log -Pattern ': (fatal )?error [A-Z]+[0-9]+' |
+            ForEach-Object { ($_.Line -replace '^.*\\src\\', 'src\' -replace '\[[^\]]*\.vcxproj\]', '').Trim() } |
+            Select-Object -Unique
+          Write-Host "$($errors.Count) unique errors"
+          $chunks = [System.Collections.Generic.List[string]]::new()
+          $chunk = ''
+          foreach ($e in $errors) {
+            if (($chunk.Length + $e.Length) -gt 3500) { $chunks.Add($chunk); $chunk = '' }
+            $chunk += $e + '%0A'
+          }
+          if ($chunk) { $chunks.Add($chunk) }
+          $i = 0
+          foreach ($c in ($chunks | Select-Object -First 9)) { $i++; Write-Host "::error title=Compiler errors $i::$c" }
       - name: Upload build log
         if: always()
         uses: actions/upload-artifact@v4
