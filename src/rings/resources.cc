@@ -37,11 +37,13 @@ namespace rings {
 
 
 const int16_t* lookup_table_int16_table[] = {
+  nullptr,  // Kindred: unused; MSVC does not allow empty arrays.
 };
 
 
 
 const uint32_t* lookup_table_uint32_table[] = {
+  nullptr,  // Kindred: unused; MSVC does not allow empty arrays.
 };
 
 const float lut_sine[] = {
