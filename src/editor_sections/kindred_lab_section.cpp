@@ -16,7 +16,7 @@ namespace {
   const float kSelectorHeight = 16.0f;
   const float kKnobY = 30.0f;
   const float kCrewWidth = 50.0f;
-  const float kModelSlotWidth = 104.0f;
+  const float kModelSlotWidth = 96.0f;
 }
 
 // ------------------------------------------------------------------ shared crew panel
@@ -137,7 +137,7 @@ void KindredMorphSection::guiChanged(SynthSlider* slider) {
 void KindredMorphSection::paintBackground(Graphics& g) {
   KindredCrewSection::paintBackground(g);
   labelKnobs(g, { harmonics_.get(), timbre_.get(), shape_.get(), level_.get() },
-             { TRANS("HARMONICS"), TRANS("TIMBRE"), TRANS("SHAPE"), TRANS("LEVEL") });
+             { TRANS("HARMON."), TRANS("TIMBRE"), TRANS("SHAPE"), TRANS("LEVEL") });
 }
 
 void KindredMorphSection::resized() {
