@@ -25,6 +25,7 @@
 #include <iomanip>
 
 #define DYNAMIC_WIDTH 220.0f
+#define KINDRED_LAB_HEIGHT 96.0f
 
 SynthesisInterface::SynthesisInterface(
     mopo::control_map controls, MidiKeyboardState* keyboard_state) : SynthSection("synthesis") {
@@ -53,6 +54,10 @@ SynthesisInterface::SynthesisInterface(
   addSubSection(stutter_section_ = new StutterSection("STUTTER"));
   addSubSection(sub_section_ = new SubSection("SUB"));
   addSubSection(voice_section_ = new VoiceSection("VOICE"));
+
+  addSubSection(kindred_morph_section_ = new KindredMorphSection("MORPH // PERSEFONE"));
+  addSubSection(kindred_body_section_ = new KindredBodySection("BODY // AMELIA"));
+  addSubSection(kindred_character_section_ = new KindredCharacterSection("CHARACTER // CATALINA"));
 
   keyboard_->setColour(MidiKeyboardComponent::whiteNoteColourId, Colour(0xff1e222a));
   keyboard_->setColour(MidiKeyboardComponent::blackNoteColourId, Colour(0xff0f1115));
@@ -89,6 +94,9 @@ SynthesisInterface::~SynthesisInterface() {
   stutter_section_ = nullptr;
   sub_section_ = nullptr;
   voice_section_ = nullptr;
+  kindred_morph_section_ = nullptr;
+  kindred_body_section_ = nullptr;
+  kindred_character_section_ = nullptr;
 }
 
 void SynthesisInterface::paintBackground(Graphics& g) {
@@ -116,6 +124,9 @@ void SynthesisInterface::paintBackground(Graphics& g) {
   section_shadow.drawForRectangle(g, stutter_section_->getBounds());
   section_shadow.drawForRectangle(g, sub_section_->getBounds());
   section_shadow.drawForRectangle(g, voice_section_->getBounds());
+  section_shadow.drawForRectangle(g, kindred_morph_section_->getBounds());
+  section_shadow.drawForRectangle(g, kindred_body_section_->getBounds());
+  section_shadow.drawForRectangle(g, kindred_character_section_->getBounds());
 
   paintChildrenBackgrounds(g);
 }
@@ -189,6 +200,19 @@ void SynthesisInterface::resized() {
   reverb_section_->setBounds(column_4_x, delay_section_->getBottom() + padding_,
                              section_three_right_width, reverb_height);
 
+  // Kindred Lab: Morph, Body and Character across the full width.
+  int lab_y = step_sequencer_section_->getBottom() + padding_;
+  int lab_height = size_ratio_ * KINDRED_LAB_HEIGHT;
+  int lab_width = section_one_width_ + section_two_width_ + section_three_width_ + 2 * padding_;
+  int morph_width = 0.36f * lab_width;
+  int body_width = 0.40f * lab_width;
+  int character_width = lab_width - morph_width - body_width - 2 * padding_;
+  kindred_morph_section_->setBounds(column_1_x, lab_y, morph_width, lab_height);
+  kindred_body_section_->setBounds(kindred_morph_section_->getRight() + padding_, lab_y,
+                                   body_width, lab_height);
+  kindred_character_section_->setBounds(kindred_body_section_->getRight() + padding_, lab_y,
+                                        character_width, lab_height);
+
   int dynamic_width = size_ratio_ * DYNAMIC_WIDTH;
   int dynamics_y = getHeight() - padding_ - dynamics_height;
   
@@ -204,3 +228,6 @@ void SynthesisInterface::resized() {
 
   SynthSection::resized();
 }
+
+// Kindred Lab panels, compiled here so that no build files need changing.
+#include "kindred_lab_section.cpp"

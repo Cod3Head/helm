@@ -99,6 +99,7 @@ namespace mopo {
       Envelope* filter_envelope_;
       BypassRouter* formant_container_;
       Output note_retriggered_;
+      Output* kindred_note_on_;  // Note-start trigger for the Morph oscillator.
       HelmLfo* poly_lfo_;
 
       Multiply* output_;

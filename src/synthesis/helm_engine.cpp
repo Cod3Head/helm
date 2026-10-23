@@ -19,6 +19,8 @@
 #include "dc_filter.h"
 #include "helm_lfo.h"
 #include "helm_voice_handler.h"
+#include "kindred/kindred_body.h"
+#include "kindred/kindred_character.h"
 #include "peak_meter.h"
 #include "value_switch.h"
 
@@ -30,7 +32,7 @@
 
 namespace mopo {
 
-  HelmEngine::HelmEngine() : was_playing_arp_(false) {
+  HelmEngine::HelmEngine() : was_playing_arp_(false), body_note_(nullptr), body_strum_(nullptr) {
     init();
     bps_ = controls_["beats_per_minute"];
   }
@@ -165,6 +167,31 @@ namespace mopo {
 
     addProcessor(voice_handler_);
 
+    // Kindred: Amelia's Body (Mutable Instruments Rings). The voices excite a physical
+    // model tuned to the last played note.
+    body_note_ = new cr::Value(48.0);
+    body_strum_ = new cr::Value(0.0);
+    Value* body_on = createBaseControl("body_on");
+    Value* body_model = createBaseControl("body_model");
+    Output* body_structure = createMonoModControl("body_structure", true);
+    Output* body_brightness = createMonoModControl("body_brightness", true);
+    Output* body_damping = createMonoModControl("body_damping", true);
+    Output* body_position = createMonoModControl("body_position", true);
+    Output* body_mix = createMonoModControl("body_mix", true);
+
+    KindredBody* body = new KindredBody();
+    body->plug(voice_handler_, KindredBody::kAudio);
+    body->plug(body_on, KindredBody::kOn);
+    body->plug(body_note_, KindredBody::kNote);
+    body->plug(body_model, KindredBody::kModel);
+    body->plug(body_structure, KindredBody::kStructure);
+    body->plug(body_brightness, KindredBody::kBrightness);
+    body->plug(body_damping, KindredBody::kDamping);
+    body->plug(body_position, KindredBody::kPosition);
+    body->plug(body_mix, KindredBody::kMix);
+    body->plug(body_strum_, KindredBody::kStrum);
+    addProcessor(body);
+
     // Distortion
     Distortion* distortion = new Distortion();
     Value* distortion_on = createBaseControl("distortion_on");
@@ -174,13 +201,27 @@ namespace mopo {
     cr::MagnitudeScale* distortion_gain = new cr::MagnitudeScale();
     distortion_gain->plug(distortion_drive);
 
-    distortion->plug(voice_handler_, Distortion::kAudio);
+    distortion->plug(body, Distortion::kAudio);
     distortion->plug(distortion_on, Distortion::kOn);
     distortion->plug(distortion_type, Distortion::kType);
     distortion->plug(distortion_gain, Distortion::kDrive);
     distortion->plug(distortion_mix, Distortion::kMix);
     addProcessor(distortion);
     addProcessor(distortion_gain);
+
+    // Kindred: Catalina's Character (RTNeural networks trained on simulated circuits).
+    Value* character_on = createBaseControl("character_on");
+    Value* character_model = createBaseControl("character_model");
+    Output* character_drive = createMonoModControl("character_drive", true);
+    Output* character_mix = createMonoModControl("character_mix", true);
+
+    KindredCharacter* character = new KindredCharacter();
+    character->plug(distortion, KindredCharacter::kAudio);
+    character->plug(character_on, KindredCharacter::kOn);
+    character->plug(character_model, KindredCharacter::kModel);
+    character->plug(character_drive, KindredCharacter::kDrive);
+    character->plug(character_mix, KindredCharacter::kMix);
+    addProcessor(character);
 
     // Delay effect.
     Output* delay_free_frequency = createMonoModControl("delay_frequency", true);
@@ -200,14 +241,14 @@ namespace mopo {
     delay_samples->plug(delay_frequency_smoothed);
 
     Delay* delay = new Delay(MAX_DELAY_SAMPLES);
-    delay->plug(distortion, Delay::kAudio);
+    delay->plug(character, Delay::kAudio);
     delay->plug(delay_samples, Delay::kSampleDelay);
     delay->plug(delay_feedback_clamped, Delay::kFeedback);
     delay->plug(delay_wet, Delay::kWet);
 
     BypassRouter* delay_container = new BypassRouter();
     delay_container->plug(delay_on, BypassRouter::kOn);
-    delay_container->plug(distortion, BypassRouter::kAudio);
+    delay_container->plug(character, BypassRouter::kAudio);
     delay_container->addProcessor(delay_feedback_clamped);
     delay_container->addProcessor(delay_frequency_smoothed);
     delay_container->addProcessor(delay_samples);
@@ -359,6 +400,13 @@ namespace mopo {
 
     was_playing_arp_ = playing_arp;
     arpeggiator_->process();
+
+    mopo_float last_note = getLastActiveNote();
+    if (body_note_ && last_note >= 0.0)
+      body_note_->set(last_note);
+    if (body_strum_)
+      body_strum_->set(voice_handler_->note_retrigger()->triggered ? 1.0 : 0.0);
+
     ProcessorRouter::process();
 
     if (getNumActiveVoices() == 0) {
@@ -433,3 +481,7 @@ namespace mopo {
     voice_handler_->sustainOff();
   }
 } // namespace mopo
+
+// Kindred DSP (Mutable Instruments Plaits/Rings, RTNeural and the Kindred engines) is compiled
+// here so that no build files need changing. See src/kindred/kindred_dsp.inc.
+#include "kindred/kindred_dsp.inc"

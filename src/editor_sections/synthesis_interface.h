@@ -37,6 +37,7 @@
 #include "step_sequencer_section.h"
 #include "stutter_section.h"
 #include "voice_section.h"
+#include "kindred_lab_section.h"
 #include "volume_section.h"
 
 #include "modulation_button.h"
@@ -78,6 +79,11 @@ class SynthesisInterface  : public SynthSection {
     ScopedPointer<StutterSection> stutter_section_;
     ScopedPointer<SubSection> sub_section_;
     ScopedPointer<VoiceSection> voice_section_;
+
+    // Kindred Lab row.
+    ScopedPointer<KindredMorphSection> kindred_morph_section_;
+    ScopedPointer<KindredBodySection> kindred_body_section_;
+    ScopedPointer<KindredCharacterSection> kindred_character_section_;
 
     int padding_;
     int section_one_width_;

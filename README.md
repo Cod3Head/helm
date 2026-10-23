@@ -11,6 +11,19 @@ Kindred is crewed by the three characters from Clear But Complex // SignalForge,
 
 They live, animated, in the About panel (click the logo). Their artwork comes from SignalForge (`tools/cbc_crew_assets.py`); only generated character art is used, never photographs. Click a character to pause her; the "Animate graphics" setting turns all animation off.
 
+### The Kindred Lab: three engines, one chain
+Below the LFOs sits the **Kindred Lab**, a row of three engines that work together. Each one is looked after by a crew member:
+
+**Voice -> Morph -> Body -> Distortion -> Character -> Delay -> Reverb**
+
+- **MORPH // PERSEFONE** - a second oscillator per voice with 24 synthesis models from Mutable Instruments Plaits: virtual analog, waveshaping, FM, the DX7-style FM banks, granular formants, additive harmonics, wavetables, chords, speech, swarms, physical strings and modal bodies, and drums. **MODEL** is continuous: between two models the oscillator crossfades between them, so modulating MODEL from an LFO, envelope or the step sequencer *morphs* the sound from one way of making sound into another. HARMONICS, TIMBRE and SHAPE are the Plaits controls of the current model. LEVEL mixes it in with the two classic oscillators (0 = off).
+- **BODY // AMELIA** - the whole synth becomes the striker of a physical object, from Mutable Instruments Rings: modal (bars, bells, plates), sympathetic strings, a single string, an FM voice, tuned strings and a string with space. It is tuned to the last note you played and struck on every new note. STRUCTURE, BRIGHTNESS, DAMPING and POSITION shape the object; MIX blends it with the dry synth.
+- **CHARACTER // CATALINA** - neural-network models of analog circuits (diode clipper, 12AX7 tube stage, wavefolder), run with RTNeural. DRIVE pushes harder into the circuit; Character matches its own loudness, so Drive changes the tone, not the volume. Train a model of your own gear from a dry/wet recording pair with `tools/kindred_train_character.py --pair dry.wav wet.wav --name "My Amp"`. The model count is fixed by the `character_model` parameter in `src/common/helm_common.cpp`, so raise its maximum when you add one.
+
+All Lab controls can be modulated like any other Kindred control. Turning Body and Character off and leaving Morph's LEVEL at 0 gives the classic Helm sound, and old patches load exactly as before.
+
+`tools/render` builds a headless renderer of the sound engine (no GUI needed) that writes WAV files, for testing and for checking the sound of a change: `sh tools/render/build.sh && build/kindred_render out.wav morph_level=1 sweep=morph_model:0:23 hold`.
+
 ### What is different from Helm
 - Clear But Complex / SignalForge visual design: near-black base (`#08090b`), slate panels (`#111318`, `#14161c`), mint primary accent (`#54f2c6`) and hot pink (`#ff2d55`) for modulation and the main action.
 - New name, icon, window title and plugin identity (manufacturer code `CbCx`, plugin code `Kndr`), so it installs side by side with Helm. Settings are stored separately from Helm's.
@@ -50,5 +63,13 @@ Open `/standalone/builds/osx/Helm.xcodeproj` (standalone) or `/builds/osx/Helm.x
  - Lots of modulation sources including polyphonic aftertouch
  - Simple arpeggiator
  - Effects: Formant filter, stutter, delay, distortion, reverb
+ - Kindred Lab: 24-model Morph oscillator, physical-model Body resonator, neural Character stage
+
+### Third-party code
+Kindred includes, unchanged except where marked "Kindred:", code from:
+- **Mutable Instruments Plaits, Rings and stmlib** by Emilie Gillet - MIT License (`src/plaits/LICENSE`, `src/rings/LICENSE`, `src/stmlib/LICENSE`). Kindred is not affiliated with or endorsed by Mutable Instruments.
+- **RTNeural** by Jatin Chowdhury - BSD 3-Clause License (`src/RTNeural/LICENSE`), with **nlohmann/json** by Niels Lohmann - MIT License (licence in `src/RTNeural/json/json.hpp`).
+- **Helm** and **mopo** by Matt Tytel - GPL-3.0.
+Both the MIT and BSD 3-Clause licences are compatible with the GPL-3.0, which covers Kindred as a whole.
 
 Original Helm screenshot (pre-restyle): http://tytel.org/static/images/helm_screenshot.png

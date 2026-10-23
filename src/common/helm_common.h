@@ -120,6 +120,33 @@ namespace mopo {
       "Sine Fold"
     };
 
+    // Kindred: Persefone's Morph oscillator (Mutable Instruments Plaits models).
+    const std::string kindred_morph_models[] = {
+      "Classic + Filter", "Phase Distortion", "FM Bank A", "FM Bank B", "FM Bank C",
+      "Wave Terrain", "String Machine", "Chiptune", "Virtual Analog", "Waveshaper",
+      "Two-Op FM", "Granular Formant", "Harmonics", "Wavetable", "Chords", "Speech",
+      "Swarm", "Filtered Noise", "Particles", "Inharmonic String", "Modal", "Bass Drum",
+      "Snare", "Hi-Hat"
+    };
+
+    // Kindred: Amelia's Body (Mutable Instruments Rings resonators).
+    const std::string kindred_body_models_short[] = {
+      "modal", "sympathy", "string", "fm voice", "tuned str", "str+space"
+    };
+
+    const std::string kindred_body_models_long[] = {
+      "Modal", "Sympathetic Strings", "String", "FM Voice", "Tuned Strings", "String + Space"
+    };
+
+    // Kindred: Catalina's Character (neural circuit models).
+    const std::string kindred_character_models_short[] = {
+      "diode", "tube", "fold"
+    };
+
+    const std::string kindred_character_models_long[] = {
+      "Diode Clipper", "Tube Stage", "Wavefolder"
+    };
+
     const std::string filter_shelves[] = {
       "low shelf",
       "band shelf",
@@ -176,7 +203,7 @@ namespace mopo {
   const mopo_float STUTTER_MAX_SAMPLES = 96000.0;
   const int DEFAULT_MODULATION_CONNECTIONS = 256;
   const int DEFAULT_WINDOW_WIDTH = 992;
-  const int DEFAULT_WINDOW_HEIGHT = 734;
+  const int DEFAULT_WINDOW_HEIGHT = 838;  // Kindred: 734 + the Kindred Lab row.
 
   const int DEFAULT_KEYBOARD_OFFSET = 48;
   const std::wstring DEFAULT_KEYBOARD = L"awsedftgyhujkolp;'";

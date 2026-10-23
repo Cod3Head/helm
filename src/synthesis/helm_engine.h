@@ -76,6 +76,8 @@ namespace mopo {
       Value* lfo_2_retrigger_;
       Value* step_sequencer_retrigger_;
       Value* bps_;
+      cr::Value* body_note_;   // Kindred: last played note, tunes Amelia's body.
+      cr::Value* body_strum_;  // Kindred: 1 on blocks with a new note, strikes the body.
       HelmLfo* lfo_1_;
       HelmLfo* lfo_2_;
       PeakMeter* peak_meter_;

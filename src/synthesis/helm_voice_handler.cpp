@@ -15,6 +15,7 @@
  */
 
 #include "helm_voice_handler.h"
+#include "kindred/kindred_morph_oscillator.h"
 
 #include "fixed_point_oscillator.h"
 #include "gate.h"
@@ -310,6 +311,28 @@ namespace mopo {
 
     addProcessor(oscillator_noise_sum);
 
+    // Kindred: Persefone's Morph oscillator (Mutable Instruments Plaits, 24 models).
+    Output* morph_level = createPolyModControl("morph_level", true);
+    Output* morph_model = createPolyModControl("morph_model", true);
+    Output* morph_harmonics = createPolyModControl("morph_harmonics", true);
+    Output* morph_timbre = createPolyModControl("morph_timbre", true);
+    Output* morph_shape = createPolyModControl("morph_shape", true);
+
+    KindredMorphOscillator* morph_oscillator = new KindredMorphOscillator();
+    morph_oscillator->plug(bent_midi, KindredMorphOscillator::kMidi);
+    morph_oscillator->plug(morph_model, KindredMorphOscillator::kModel);
+    morph_oscillator->plug(morph_harmonics, KindredMorphOscillator::kHarmonics);
+    morph_oscillator->plug(morph_timbre, KindredMorphOscillator::kTimbre);
+    morph_oscillator->plug(morph_shape, KindredMorphOscillator::kMorph);
+    morph_oscillator->plug(morph_level, KindredMorphOscillator::kLevel);
+    morph_oscillator->plug(kindred_note_on_, KindredMorphOscillator::kNoteOn);
+    addProcessor(morph_oscillator);
+
+    Add* morph_sum = new Add();
+    morph_sum->plug(oscillator_noise_sum, 0);
+    morph_sum->plug(morph_oscillator, 1);
+    addProcessor(morph_sum);
+
     // Oscillator feedback.
     Output* osc_feedback_transpose = createPolyModControl("osc_feedback_transpose", true);
     Output* osc_feedback_amount = createPolyModControl("osc_feedback_amount", true);
@@ -346,7 +369,7 @@ namespace mopo {
     osc_feedback_amount_audio->plug(reset, LinearSmoothBuffer::kTrigger);
 
     osc_feedback_ = new SimpleDelay(MAX_FEEDBACK_SAMPLES);
-    osc_feedback_->plug(oscillator_noise_sum, SimpleDelay::kAudio);
+    osc_feedback_->plug(morph_sum, SimpleDelay::kAudio);
     osc_feedback_->plug(osc_feedback_samples_audio, SimpleDelay::kSampleDelay);
     osc_feedback_->plug(osc_feedback_amount_audio, SimpleDelay::kFeedback);
     osc_feedback_->plug(reset, SimpleDelay::kReset);
@@ -644,6 +667,8 @@ namespace mopo {
     Output* amplitude_sustain = createPolyModControl("amp_sustain", true);
     Output* amplitude_release = createPolyModControl("amp_release", true);
 
+    kindred_note_on_ = legato_filter->output(LegatoFilter::kRetrigger);
+
     amplitude_envelope_ = new Envelope();
     amplitude_envelope_->plug(legato_filter->output(LegatoFilter::kRetrigger),
                               Envelope::kTrigger);
@@ -799,3 +824,6 @@ namespace mopo {
     return poly_readouts_;
   }
 } // namespace mopo
+
+// Two Plaits files that need their own compilation unit; see src/kindred/kindred_dsp_isolated.inc.
+#include "kindred/kindred_dsp_isolated.inc"
